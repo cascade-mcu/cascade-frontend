@@ -8,6 +8,7 @@
     "graphql": "^0.13.2",
     "graphql-tag": "^2.8.0",
     "history": "^4.7.2",
+    "material-ui": "^1.0.0-beta.38",
     "normalize.css": "^8.0.0",
     "radium": "^0.23.0",
     "react": "^16.2.0",

@@ -20,6 +20,8 @@ type Device {
   id: ID! @unique
   updatedAt: DateTime!
   sensors: [Sensor!]! @relation(name: "DeviceSensors")
+  name: String
+  token: String
 }
 
 type Reading {
