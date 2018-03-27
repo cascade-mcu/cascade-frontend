@@ -9,7 +9,7 @@ class Devices extends Component {
   render() {
     const {
       data: {
-        allDevices,
+        devices,
       },
     } = this.props;
 
@@ -17,11 +17,39 @@ class Devices extends Component {
       <div style={styles.container}>
         Devices
 
-        {_.map(allDevices, (device) => (
-          <div key={device.id}>
-            {device.id}: {device.createdAt}
-          </div>
-        ))}
+        {_.map(devices, (device) => {
+          const {
+            id,
+            createdAt,
+            sensors,
+          } = device;
+
+          return (
+            <div key={id}>
+              Device
+              {id}: {createdAt}
+
+              <div>
+                Sensors:
+                {_.map(sensors, (sensor) => {
+                  return (
+                    <div key={sensor.id}>
+                      Sensor: {sensor.name}
+
+                      {_.map(sensor.readings, (reading) => {
+                        return (
+                          <div key={reading.id}>
+                            {reading.createdAt}: {reading.value}
+                          </div>
+                        );
+                      })}
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
+          );
+        })}
       </div>
     );
   }
@@ -35,11 +63,22 @@ const styles = {
 
 export const DevicesQuery = gql`
   query DevicesQuery {
-    allDevices {
+    devices {
       id
       createdAt
+
+      sensors {
+        id
+        name
+
+        readings {
+          id
+          value
+          createdAt
+        }
+      }
     }
-}
+  }
 `;
 
 export default compose(

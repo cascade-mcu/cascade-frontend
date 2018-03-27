@@ -1,0 +1,40 @@
+type File {
+  contentType: String!
+  createdAt: DateTime!
+  id: ID! @unique
+  name: String!
+  secret: String! @isUnique
+  size: Int!
+  updatedAt: DateTime!
+  url: String! @isUnique
+}
+
+type User {
+  createdAt: DateTime!
+  id: ID! @unique
+  updatedAt: DateTime!
+}
+
+type Device {
+  createdAt: DateTime!
+  id: ID! @unique
+  updatedAt: DateTime!
+  sensors: [Sensor!]! @relation(name: "DeviceSensors")
+}
+
+type Reading {
+  createdAt: DateTime!
+  sensor: Sensor @relation(name: "SensorReadings")
+  id: ID! @unique
+  updatedAt: DateTime!
+  value: Float!
+}
+
+type Sensor {
+  createdAt: DateTime!
+  name: String
+  device: Device @relation(name: "DeviceSensors")
+  readings: [Reading!]! @relation(name: "SensorReadings")
+  id: ID! @unique
+  updatedAt: DateTime!
+}
