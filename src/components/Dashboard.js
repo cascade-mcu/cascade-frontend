@@ -14,10 +14,13 @@ import Loader from './Loader';
 
 const GET_DEVICES = gql`
   {
-    devices {
+    me {
       id
-      name
-      createdAt
+      devices {
+        id
+        name
+        createdAt
+      }
     }
   }
 `;
@@ -34,7 +37,9 @@ class Dashboard extends Component {
               if (loading) return <Loader />;
 
               const {
-                devices,
+                me: {
+                  devices,
+                },
               } = data;
 
               return (
