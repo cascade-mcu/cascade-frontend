@@ -22,7 +22,7 @@ const DeviceQuery = gql`
         id
         name
 
-        readings {
+        logs {
           id
           value
           createdAt
