@@ -10,6 +10,7 @@ import { Query } from 'react-apollo';
 
 import Navbar from './Navbar';
 import Container from './Container';
+import Loader from './Loader';
 
 export const DashboardQuery = gql`
   query DashboardQuery {
@@ -30,6 +31,8 @@ class Dashboard extends Component {
         <Container>
           <Query query={DashboardQuery}>
             {({ loading, error, data }) => {
+              if (loading) return <Loader />;
+
               const {
                 devices,
               } = data;

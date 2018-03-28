@@ -8,6 +8,7 @@ import { Query } from 'react-apollo';
 
 import Navbar from './Navbar';
 import Container from './Container';
+import Loader from './Loader';
 
 const DeviceQuery = gql`
   query DeviceQuery($deviceId: ID!) {
@@ -47,7 +48,7 @@ class Device extends Component {
         <Container>
           <Query query={DeviceQuery} variables={{ deviceId }}>
             {({ loading, error, data }) => {
-              if (loading) return "Loading...";
+              if (loading) return <Loader />;
               if (error) return `Error! ${error.message}`;
 
               const {
