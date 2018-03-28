@@ -1,3 +1,8 @@
+## Start
+
+REACT_APP_GRAPHQL_URI=https://eu1.prisma.sh/domas-bitvinskas/cascade/dev yarn start
+
+
 This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).
 
 Below you will find some information on how to perform common tasks.<br>
