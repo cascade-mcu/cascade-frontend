@@ -4,40 +4,12 @@ import gql from 'graphql-tag';
 import { graphql } from 'react-apollo';
 import Radium from 'radium';
 import _ from 'lodash';
+import { Query } from 'react-apollo';
 
-class Device extends Component {
-  render() {
-    const {
-      data: {
-        loading,
-      },
-    } = this.props;
+import Navbar from './Navbar';
+import Container from './Container';
 
-    if (loading) return <div/>;
-
-    const {
-      data: {
-        device: {
-          id,
-        },
-      },
-    } = this.props;
-
-    return (
-      <div style={styles.container}>
-        Device {id}
-      </div>
-    );
-  }
-}
-
-const styles = {
-  container: {
-    margin: '0 auto',
-  },
-}
-
-export const DeviceQuery = gql`
+const DeviceQuery = gql`
   query DeviceQuery($deviceId: ID!) {
     device(where: {
       id: $deviceId
@@ -59,18 +31,43 @@ export const DeviceQuery = gql`
   }
 `;
 
-export default compose(
-  graphql(DeviceQuery, {
-    options: ({
+class Device extends Component {
+  render() {
+    const {
       match: {
         params: {
           deviceId,
         },
       },
-    }) => ({
-      variables: {
-        deviceId,
-      },
-    }),
-  }),
+    } = this.props;
+
+    return (
+      <div>
+        <Navbar />
+        <Container>
+          <Query query={DeviceQuery} variables={{ deviceId }}>
+            {({ loading, error, data }) => {
+              if (loading) return "Loading...";
+              if (error) return `Error! ${error.message}`;
+
+              const {
+                device: {
+                  id,
+                },
+              } = data;
+
+              return (
+                <div>
+                  Device {id}
+                </div>
+              );
+            }}
+          </Query>
+        </Container>
+      </div>
+    );
+  }
+}
+
+export default compose(
 )(Device);

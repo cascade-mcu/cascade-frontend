@@ -4,45 +4,12 @@ import gql from 'graphql-tag';
 import { graphql } from 'react-apollo';
 import Radium from 'radium';
 import _ from 'lodash';
-import Grid from 'material-ui/Grid';
 import Button from 'material-ui/Button';
 import { Link } from 'react-router-dom';
+import { Query } from 'react-apollo';
 
 import Navbar from './Navbar';
-
-class Dashboard extends Component {
-  render() {
-    const {
-      data: {
-        devices,
-      },
-    } = this.props;
-
-    return (
-      <div>
-        <Navbar />
-
-        <Grid container style={styles.container}>
-          <Grid item xs={12} md={6}>
-            {_.map(devices, (device) => {
-              return (
-                <Button component={Link} to={`/devices/${device.id}`} key={device.id} variant='raised' fullWidth>
-                  {device.name}
-                </Button>
-              );
-            })}
-          </Grid>
-        </Grid>
-      </div>
-    );
-  }
-}
-
-const styles = {
-  container: {
-    padding: '20px',
-  },
-}
+import Container from './Container';
 
 export const DashboardQuery = gql`
   query DashboardQuery {
@@ -54,6 +21,43 @@ export const DashboardQuery = gql`
   }
 `;
 
+class Dashboard extends Component {
+  render() {
+    return (
+      <div>
+        <Navbar />
+
+        <Container>
+          <Query query={DashboardQuery}>
+            {({ loading, error, data }) => {
+              const {
+                devices,
+              } = data;
+
+              return (
+                <div>
+                  {_.map(devices, (device) => {
+                    return (
+                      <Button component={Link} to={`/devices/${device.id}`} key={device.id} variant='raised' fullWidth>
+                        {device.name}
+                      </Button>
+                    );
+                  })}
+                </div>
+              );
+            }}
+          </Query>
+        </Container>
+      </div>
+    );
+  }
+}
+
+const styles = {
+  container: {
+    padding: '20px',
+  },
+}
+
 export default compose(
-  graphql(DashboardQuery),
 )(Dashboard);
