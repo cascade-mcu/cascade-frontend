@@ -1,6 +1,6 @@
 ## Start
 
-REACT_APP_GRAPHQL_URI=https://eu1.prisma.sh/domas-bitvinskas/cascade/dev yarn start
+REACT_APP_GRAPHQL_URI=https://cascade-server.now.sh yarn start
 
 
 This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).
