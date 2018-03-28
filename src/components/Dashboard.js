@@ -5,6 +5,8 @@ import { graphql } from 'react-apollo';
 import Radium from 'radium';
 import _ from 'lodash';
 import Grid from 'material-ui/Grid';
+import Button from 'material-ui/Button';
+import { Link } from 'react-router-dom';
 
 import Navbar from './Navbar';
 
@@ -20,17 +22,17 @@ class Dashboard extends Component {
       <div>
         <Navbar />
 
-        <div style={styles.container}>
-          Dashboard
-
-          {_.map(devices, (device) => {
-            return (
-              <div key={device.id}>
-                {device.name}
-              </div>
-            );
-          })}
-        </div>
+        <Grid container style={styles.container}>
+          <Grid item xs={12} md={6}>
+            {_.map(devices, (device) => {
+              return (
+                <Button component={Link} to={`/devices/${device.id}`} key={device.id} variant='raised' fullWidth>
+                  {device.name}
+                </Button>
+              );
+            })}
+          </Grid>
+        </Grid>
       </div>
     );
   }
