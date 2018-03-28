@@ -3,7 +3,6 @@ import { compose } from 'redux';
 import gql from 'graphql-tag';
 import { graphql } from 'react-apollo';
 import { Mutation } from "react-apollo";
-import { Link } from 'react-router-dom';
 
 import Radium from 'radium';
 import _ from 'lodash';
@@ -17,17 +16,17 @@ import Navbar from './Navbar';
 import Container from './Container';
 import Loader from './Loader';
 
-const SIGNUP = gql`
-  mutation signup($email: String!, $password: String!) {
-    signup(email: $email, password: $password) {
+const LOGIN = gql`
+  mutation login($email: String!, $password: String!) {
+    login(email: $email, password: $password) {
       token
     }
   }
 `;
 
-class Signup extends Component {
+class Login extends Component {
   token(data) {
-    return _.get(data, 'signup.token');
+    return _.get(data, 'login.token');
   }
 
   saveToken(token) {
@@ -48,18 +47,18 @@ class Signup extends Component {
       <div>
         <Navbar />
         <Container>
-          Sign up
+          Login
 
-          <Mutation mutation={SIGNUP}>
-            {(signup, { data, error }) => {
+          <Mutation mutation={LOGIN}>
+            {(login, { data, error }) => {
               this.token(data) && this.handleSuccess(this.token(data));
 
               return (
-                <form onSubmit={handleSubmit((variables) => signup({ variables }))}>
+                <form onSubmit={handleSubmit((variables) => login({ variables }))}>
                   <Field name='email' component={TextField} placeholder='Email' />
                   <Field name='password' component={TextField} placeholder='Password' />
                   <Button type='submit'>
-                    Signup
+                    Login
                   </Button>
 
                   <div>
@@ -69,8 +68,6 @@ class Signup extends Component {
               );
             }}
           </Mutation>
-
-          Have an account? Login <Link to='/login'>here</Link>
         </Container>
       </div>
     );
@@ -79,6 +76,6 @@ class Signup extends Component {
 
 export default compose(
   reduxForm({
-    form: 'signup',
+    form: 'login',
   }),
-)(Signup);
+)(Login);
