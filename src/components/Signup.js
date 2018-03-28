@@ -25,15 +25,17 @@ const SIGNUP = gql`
 `;
 
 class Signup extends Component {
+  token(data) {
+    return _.get(data, 'signup.token');
+  }
+
   saveToken(token) {
     localStorage.setItem('token', token);
   }
 
-  handleSuccess(data) {
-    const token = _.get(data, 'signup.token');
-    if (!token) return;
-
+  handleSuccess(token) {
     this.saveToken(token);
+    this.props.history.push('/dashboard');
   }
 
   render() {
@@ -47,7 +49,8 @@ class Signup extends Component {
         <Container>
           <Mutation mutation={SIGNUP}>
             {(signup, { data }) => {
-              this.handleSuccess(data);
+              this.token(data) && this.handleSuccess(this.token(data));
+
               return (
                 <form onSubmit={handleSubmit((variables) => signup({ variables }))}>
                   <Field name='email' component={TextField} placeholder='Email' />
