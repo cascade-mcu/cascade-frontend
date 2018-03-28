@@ -12,8 +12,8 @@ import Navbar from './Navbar';
 import Container from './Container';
 import Loader from './Loader';
 
-export const DashboardQuery = gql`
-  query DashboardQuery {
+const GET_DEVICES = gql`
+  {
     devices {
       id
       name
@@ -29,7 +29,7 @@ class Dashboard extends Component {
         <Navbar />
 
         <Container>
-          <Query query={DashboardQuery}>
+          <Query query={GET_DEVICES}>
             {({ loading, error, data }) => {
               if (loading) return <Loader />;
 

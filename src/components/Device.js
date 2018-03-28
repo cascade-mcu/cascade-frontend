@@ -10,8 +10,8 @@ import Navbar from './Navbar';
 import Container from './Container';
 import Loader from './Loader';
 
-const DeviceQuery = gql`
-  query DeviceQuery($deviceId: ID!) {
+const GET_DEVICE = gql`
+  query device($deviceId: ID!) {
     device(where: {
       id: $deviceId
    }) {
@@ -46,7 +46,7 @@ class Device extends Component {
       <div>
         <Navbar />
         <Container>
-          <Query query={DeviceQuery} variables={{ deviceId }}>
+          <Query query={GET_DEVICE} variables={{ deviceId }}>
             {({ loading, error, data }) => {
               if (loading) return <Loader />;
               if (error) return `Error! ${error.message}`;

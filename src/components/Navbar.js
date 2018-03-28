@@ -18,7 +18,7 @@ class Navbar extends Component {
             <Typography variant="title" color="inherit" style={styles.title}>
               Cascade
             </Typography>
-            <Button component={Link} to='/'>
+            <Button component={Link} to='/dashboard'>
               Dashboard
             </Button>
           </Toolbar>

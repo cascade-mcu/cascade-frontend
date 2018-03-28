@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import { ConnectedRouter } from 'react-router-redux';
+import { setContext } from 'apollo-link-context';
 
 import { ApolloProvider } from 'react-apollo';
 import { ApolloClient } from 'apollo-client';
@@ -17,12 +18,24 @@ import registerServiceWorker from './registerServiceWorker';
 import './theme/index.css';
 
 const link = new BatchHttpLink({ uri: process.env.REACT_APP_GRAPHQL_URI });
+
+const authLink = setContext((_, { headers }) => {
+  const token = localStorage.getItem('token');
+
+  return {
+    headers: {
+      ...headers,
+      authorization: token ? `Bearer ${token}` : "",
+    }
+  }
+});
+
 const cache = new InMemoryCache({
   dataIdFromObject: o => o.id
 });
 
 const client = new ApolloClient({
-  link,
+  link: authLink.concat(link),
   cache,
 });
 
