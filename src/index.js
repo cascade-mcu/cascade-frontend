@@ -34,7 +34,7 @@ const cache = new InMemoryCache({
   dataIdFromObject: o => o.id
 });
 
-const client = new ApolloClient({
+export const client = new ApolloClient({
   link: authLink.concat(link),
   cache,
 });

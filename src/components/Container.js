@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Grid from 'material-ui/Grid';
+import step from '../theme/step';
 
 export default class Container extends Component {
   render() {
@@ -15,6 +16,6 @@ export default class Container extends Component {
 
 const styles = {
   container: {
-    padding: '20px',
+    padding: step(),
   },
 }

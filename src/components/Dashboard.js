@@ -11,6 +11,10 @@ import { Query } from 'react-apollo';
 import Navbar from './Navbar';
 import Container from './Container';
 import Loader from './Loader';
+import EmptyDashboard from './EmptyDashboard';
+
+import colors from '../theme/colors';
+import step from '../theme/step';
 
 const GET_DEVICES = gql`
   {
@@ -25,48 +29,56 @@ const GET_DEVICES = gql`
   }
 `;
 
-class Dashboard extends Component {
-  render() {
-    return (
-      <div>
-        <Navbar />
+export default () => (
+  <div>
+    <Navbar />
 
-        <Container>
-          <Query query={GET_DEVICES} fetchPolicy='network-only'>
-            {({ loading, error, data }) => {
-              if (loading) return <Loader />;
+    <Container>
+      <Query query={GET_DEVICES} fetchPolicy='network-only'>
+        {({ loading, error, data }) => {
+          if (loading) return <Loader />;
 
-              const {
-                me: {
-                  devices,
-                },
-              } = data;
+          const {
+            me: {
+              devices,
+            },
+          } = data;
 
-              return (
+          return (
+            <div style={styles.container}>
+              <div style={styles.centeredContainer}>
                 <div>
-                  Dash
-                  {_.map(devices, (device) => {
-                    return (
-                      <Button component={Link} to={`/devices/${device.id}`} key={device.id} variant='raised' fullWidth>
-                        {device.name}
-                      </Button>
-                    );
-                  })}
+                  Dashboard
                 </div>
-              );
-            }}
-          </Query>
-        </Container>
-      </div>
-    );
-  }
-}
+
+                {_.isEmpty(devices) && <EmptyDashboard />}
+              </div>
+            </div>
+          );
+        }}
+      </Query>
+    </Container>
+  </div>
+);
 
 const styles = {
   container: {
-    padding: '20px',
+    backgroundColor: colors.lightGrey,
+    minHeight: '500px',
+    padding: step(),
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
   },
-}
+  centeredContainer: {
+    textAlign: 'center',
+  },
+};
 
-export default compose(
-)(Dashboard);
+                  // {_.map(devices, (device) => {
+                  //   return (
+                  //     <Button component={Link} to={`/devices/${device.id}`} key={device.id} variant='raised' fullWidth>
+                  //       {device.name}
+                  //     </Button>
+                  //   );
+                  // })}
