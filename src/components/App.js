@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Route } from 'react-router-dom';
 
 import Dashboard from './Dashboard';
+import AddDevice from './AddDevice';
 import Device from './Device';
 import Signup from './Signup';
 import Login from './Login';
@@ -11,6 +12,7 @@ class App extends Component {
     return (
       <div>
         <Route path='/dashboard' exact component={Dashboard} />
+        <Route path='/add-device' exact component={AddDevice} />
         <Route path='/devices/:deviceId' exact component={Device} />
         <Route path='/' exact component={Signup} />
         <Route path='/login' exact component={Login} />
