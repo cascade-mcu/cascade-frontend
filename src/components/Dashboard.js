@@ -32,7 +32,7 @@ class Dashboard extends Component {
         <Navbar />
 
         <Container>
-          <Query query={GET_DEVICES}>
+          <Query query={GET_DEVICES} fetchPolicy='network-only'>
             {({ loading, error, data }) => {
               if (loading) return <Loader />;
 
@@ -44,6 +44,7 @@ class Dashboard extends Component {
 
               return (
                 <div>
+                  Dash
                   {_.map(devices, (device) => {
                     return (
                       <Button component={Link} to={`/devices/${device.id}`} key={device.id} variant='raised' fullWidth>

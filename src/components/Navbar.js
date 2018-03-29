@@ -15,6 +15,7 @@ const ME = gql`
   query me {
     me {
       id
+      email
     }
   }
 `;
@@ -33,7 +34,7 @@ class Navbar extends Component {
                     Cascade
                   </Typography>
                   <Button component={Link} to='/dashboard'>
-                    Dashboard | User {_.get(data, 'me.id')}
+                    Dashboard | User {_.get(data, 'me.email')}
                   </Button>
                 </Toolbar>
               </AppBar>
