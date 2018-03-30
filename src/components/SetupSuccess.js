@@ -5,6 +5,12 @@ import { graphql } from 'react-apollo';
 import Radium from 'radium';
 import _ from 'lodash';
 import { Query } from 'react-apollo';
+import { Mutation } from "react-apollo";
+import { reduxForm, Field } from 'redux-form'
+import {
+  TextField,
+} from 'redux-form-material-ui'
+import Button from 'material-ui/Button';
 
 import Navbar from './Navbar';
 import Container from './Container';
@@ -20,7 +26,30 @@ const GET_DEVICE = gql`
   }
 `;
 
+const RENAME_DEVICE = gql`
+  mutation renameDevice($deviceId: ID!, $name: String!) {
+    updateDevice(
+      where: {
+        id: $deviceId
+      }
+      data: {
+        name: $name
+      }
+    ) {
+      id
+      name
+    }
+  }
+`;
+
+
 class SetupSuccess extends Component {
+  handleSuccess(data) {
+    if (!data) return;
+
+    this.props.history.push('/dashboard');
+  }
+
   render() {
     const {
       match: {
@@ -28,6 +57,7 @@ class SetupSuccess extends Component {
           deviceId,
         },
       },
+      handleSubmit,
     } = this.props;
 
     return (
@@ -51,6 +81,34 @@ class SetupSuccess extends Component {
                   <div>
                     You now own this device {id}
                   </div>
+
+                  <div>
+                    Give the name to the device:
+
+                    <Mutation mutation={RENAME_DEVICE}>
+                      {(renameDevice, { data, error }) => {
+                        this.handleSuccess(data);
+
+                        return (
+                        <form onSubmit={handleSubmit(({ name }) => renameDevice({
+                          variables: {
+                            name,
+                            deviceId: id,
+                          }
+                        }))}>
+                            <Field name='name' component={TextField} placeholder='Name' />
+                            <Button type='submit'>
+                              Next
+                            </Button>
+
+                            <div>
+                              {error && _.get(error, 'graphQLErrors[0].message')}
+                            </div>
+                          </form>
+                        );
+                      }}
+                    </Mutation>
+                  </div>
                 </div>
               );
             }}
@@ -62,4 +120,7 @@ class SetupSuccess extends Component {
 }
 
 export default compose(
+  reduxForm({
+    form: 'renameDevice',
+  }),
 )(SetupSuccess);
