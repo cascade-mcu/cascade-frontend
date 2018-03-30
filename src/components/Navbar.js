@@ -30,6 +30,7 @@ class Navbar extends Component {
     return (
       <Query query={ME}>
         {({ loading, error, data }) => {
+          const user = _.get(data, 'me');
 
           return (
             <div style={styles.container}>
@@ -38,12 +39,12 @@ class Navbar extends Component {
                   <Typography variant="title" color="inherit" style={styles.title}>
                     Cascade
                   </Typography>
-                  <Button component={Link} to='/dashboard'>
-                    Dashboard | User {_.get(data, 'me.email')}
-                  </Button>
-                  <Button onClick={() => this.logout()}>
+                  {user && <Button component={Link} to='/dashboard'>
+                    Dashboard ({user.email})
+                  </Button>}
+                  {user && <Button onClick={() => this.logout()}>
                     Logout
-                  </Button>
+                  </Button>}
                 </Toolbar>
               </AppBar>
             </div>
