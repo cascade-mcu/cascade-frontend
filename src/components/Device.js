@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import { compose } from 'redux';
 import gql from 'graphql-tag';
-import { graphql } from 'react-apollo';
-import Radium from 'radium';
 import _ from 'lodash';
 import { Query } from 'react-apollo';
 

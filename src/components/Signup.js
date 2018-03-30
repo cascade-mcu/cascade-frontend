@@ -1,11 +1,9 @@
 import React, { Component } from 'react';
 import { compose } from 'redux';
 import gql from 'graphql-tag';
-import { graphql } from 'react-apollo';
 import { Mutation } from "react-apollo";
 import { Link } from 'react-router-dom';
 
-import Radium from 'radium';
 import _ from 'lodash';
 import { reduxForm, Field } from 'redux-form'
 import {
@@ -15,7 +13,6 @@ import Button from 'material-ui/Button';
 
 import Navbar from './Navbar';
 import Container from './Container';
-import Loader from './Loader';
 
 const SIGNUP = gql`
   mutation signup($firstName: String!, $lastName: String!, $email: String!, $password: String!) {

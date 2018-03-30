@@ -9,8 +9,6 @@ import { ApolloClient } from 'apollo-client';
 import { BatchHttpLink } from "apollo-link-batch-http";
 import { InMemoryCache } from 'apollo-cache-inmemory';
 
-import { ApolloLink } from 'apollo-client-preset'
-
 import store, { history } from './store';
 import App from './components/App';
 import registerServiceWorker from './registerServiceWorker';

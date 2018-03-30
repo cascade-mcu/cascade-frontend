@@ -1,8 +1,5 @@
 import React, { Component } from 'react';
-import { compose } from 'redux';
-import Radium from 'radium';
 import _ from 'lodash';
-import { withStyles } from 'material-ui/styles';
 import AppBar from 'material-ui/AppBar';
 import Toolbar from 'material-ui/Toolbar';
 import Typography from 'material-ui/Typography';

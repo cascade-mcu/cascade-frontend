@@ -1,13 +1,9 @@
 import React, { Component } from 'react';
-import { compose } from 'redux';
 import gql from 'graphql-tag';
-import { graphql } from 'react-apollo';
-import Radium from 'radium';
 import _ from 'lodash';
 import { Query } from 'react-apollo';
 import Button from 'material-ui/Button';
-import { Link } from 'react-router-dom';
-import { Mutation } from "react-apollo";
+import { Mutation } from 'react-apollo';
 
 import Navbar from './Navbar';
 import Container from './Container';
