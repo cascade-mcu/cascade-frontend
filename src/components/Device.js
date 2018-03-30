@@ -16,11 +16,15 @@ const GET_DEVICE = gql`
       id: $deviceId
    }) {
       id
+      name
       createdAt
 
       sensors {
         id
-        name
+
+        sensorType {
+          name
+        }
 
         logs {
           id
@@ -54,12 +58,45 @@ class Device extends Component {
               const {
                 device: {
                   id,
+                  name,
+
+                  sensors,
                 },
               } = data;
 
               return (
                 <div>
-                  Device {id}
+                  <h1>
+                    Device
+                  </h1>
+
+                  <div>
+                    {name} ({id})
+                  </div>
+
+                  <div>
+                    <h2>
+                      Sensors:
+                    </h2>
+
+                    <div>
+                      {_.map(sensors, (sensor) => {
+                        const {
+                          sensorType: {
+                            name,
+                          },
+                        } = sensor;
+
+                        return (
+                          <div key={id}>
+                            <h3>
+                              {name}
+                            </h3>
+                          </div>
+                        );
+                      })}
+                    </div>
+                  </div>
                 </div>
               );
             }}
