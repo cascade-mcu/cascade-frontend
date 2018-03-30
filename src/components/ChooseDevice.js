@@ -12,41 +12,47 @@ import Navbar from './Navbar';
 import Container from './Container';
 import Loader from './Loader';
 
-const GET_DEVICE_MODELS = gql`
-  {
-    deviceModels {
+const GET_DEVICES = gql`
+  query getDevices($deviceModelId: ID!) {
+    devices(where: {
+      deviceModel: {
+        id: $deviceModelId
+      }
+    }) {
       id
-      available
-      name
     }
   }
 `;
 
-export default () => (
+export default ({
+  match: {
+    params: {
+      deviceModelId,
+    },
+  },
+}) => (
   <div>
     <Navbar />
     <Container>
-      <Query query={GET_DEVICE_MODELS}>
+      <Query query={GET_DEVICES} variables={{ deviceModelId }}>
         {({ loading, error, data }) => {
           if (loading) return <Loader />;
           if (error) return `Error! ${error.message}`;
 
           const {
-            deviceModels,
+            devices,
           } = data;
 
           return (
             <div>
-              {_.map(deviceModels, (deviceModel) => {
+              {_.map(devices, (device) => {
                 const {
                   id,
-                  name,
-                  available,
-                } = deviceModel;
+                } = device;
 
                 return (
-                  <Button component={Link} to={`/add-device/${id}`} key={id} variant='raised' fullWidth>
-                    {name} {!available && '(Coming Soon)'}
+                  <Button component={Link} to={`/todo`} key={id} variant='raised' fullWidth>
+                    {id}
                   </Button>
                 );
               })}
