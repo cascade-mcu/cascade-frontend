@@ -52,6 +52,14 @@ export default () => (
                 </div>
 
                 {_.isEmpty(devices) && <EmptyDashboard />}
+
+                {_.map(devices, (device) => {
+                  return (
+                    <Button component={Link} to={`/devices/${device.id}`} key={device.id} variant='raised' fullWidth>
+                      {device.name}
+                    </Button>
+                  );
+                })}
               </div>
             </div>
           );
@@ -74,11 +82,3 @@ const styles = {
     textAlign: 'center',
   },
 };
-
-                  // {_.map(devices, (device) => {
-                  //   return (
-                  //     <Button component={Link} to={`/devices/${device.id}`} key={device.id} variant='raised' fullWidth>
-                  //       {device.name}
-                  //     </Button>
-                  //   );
-                  // })}
