@@ -14,14 +14,14 @@ class App extends Component {
   render() {
     return (
       <div>
+        <Route path='/signup' exact component={Signup} />
+        <Route path='/login' exact component={Login} />
         <Route path='/dashboard' exact component={Dashboard} />
         <Route path='/add-device' exact component={ChooseDeviceModel} />
         <Route path='/install-device/:deviceModelId' exact component={InstallDevice} />
         <Route path='/choose-device/:deviceModelId' exact component={ChooseDevice} />
         <Route path='/setup-success/:deviceId' exact component={SetupSuccess} />
         <Route path='/devices/:deviceId' exact component={Device} />
-        <Route path='/' exact component={Signup} />
-        <Route path='/login' exact component={Login} />
       </div>
     );
   }

@@ -56,7 +56,7 @@ class Login extends Component {
               return (
                 <form onSubmit={handleSubmit((variables) => login({ variables }))}>
                   <Field name='email' component={TextField} placeholder='Email' />
-                  <Field name='password' component={TextField} placeholder='Password' />
+                  <Field name='password' type='password' component={TextField} placeholder='Password' />
                   <Button type='submit'>
                     Login
                   </Button>

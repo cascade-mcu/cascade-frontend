@@ -18,8 +18,8 @@ import Container from './Container';
 import Loader from './Loader';
 
 const SIGNUP = gql`
-  mutation signup($email: String!, $password: String!) {
-    signup(email: $email, password: $password) {
+  mutation signup($firstName: String!, $lastName: String!, $email: String!, $password: String!) {
+    signup(firstName: $firstName, lastName: $lastName, email: $email, password: $password) {
       token
     }
   }
@@ -56,8 +56,10 @@ class Signup extends Component {
 
               return (
                 <form onSubmit={handleSubmit((variables) => signup({ variables }))}>
+                  <Field name='firstName' component={TextField} placeholder='First Name' />
+                  <Field name='lastName' component={TextField} placeholder='Last Name' />
                   <Field name='email' component={TextField} placeholder='Email' />
-                  <Field name='password' component={TextField} placeholder='Password' />
+                  <Field name='password' type='password' component={TextField} placeholder='Password' />
                   <Button type='submit'>
                     Signup
                   </Button>
