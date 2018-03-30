@@ -60,7 +60,7 @@ class SetupSuccess extends Component {
 
     return (
       <div>
-        <Navbar />
+        <Navbar {...this.props} />
         <Container>
           <Query query={GET_DEVICE} variables={{ deviceId }}>
             {({ loading, error, data }) => {

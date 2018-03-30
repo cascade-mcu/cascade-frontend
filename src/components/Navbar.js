@@ -7,6 +7,7 @@ import Button from 'material-ui/Button';
 import { Link } from 'react-router-dom';
 import gql from 'graphql-tag';
 import { Query } from 'react-apollo';
+import { client } from '../index';
 
 const ME = gql`
   query me {
@@ -18,6 +19,13 @@ const ME = gql`
 `;
 
 class Navbar extends Component {
+  logout() {
+    localStorage.removeItem('token');
+    client.resetStore();
+
+    this.props.history.push('/login');
+  }
+
   render() {
     return (
       <Query query={ME}>
@@ -32,6 +40,9 @@ class Navbar extends Component {
                   </Typography>
                   <Button component={Link} to='/dashboard'>
                     Dashboard | User {_.get(data, 'me.email')}
+                  </Button>
+                  <Button onClick={() => this.logout()}>
+                    Logout
                   </Button>
                 </Toolbar>
               </AppBar>

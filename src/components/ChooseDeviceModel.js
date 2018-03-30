@@ -21,7 +21,7 @@ const GET_DEVICE_MODELS = gql`
 
 export default () => (
   <div>
-    <Navbar />
+    <Navbar {...this.props} />
     <Container>
       <Query query={GET_DEVICE_MODELS}>
         {({ loading, error, data }) => {

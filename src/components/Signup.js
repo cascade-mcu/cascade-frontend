@@ -43,7 +43,7 @@ class Signup extends Component {
 
     return (
       <div>
-        <Navbar />
+        <Navbar {...this.props} />
         <Container>
           Sign up
 

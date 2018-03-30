@@ -42,7 +42,7 @@ class Login extends Component {
 
     return (
       <div>
-        <Navbar />
+        <Navbar {...this.props} />
         <Container>
           Login
 

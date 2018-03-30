@@ -68,7 +68,7 @@ export default class ChooseDevice extends Component {
 
     return (
       <div>
-        <Navbar />
+        <Navbar {...this.props} />
         <Container>
           <Query query={GET_DEVICES} variables={{ deviceModelId }}>
             {({ loading, error, data }) => {

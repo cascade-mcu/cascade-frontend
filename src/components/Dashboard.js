@@ -26,9 +26,9 @@ const GET_DEVICES = gql`
   }
 `;
 
-export default () => (
+export default (props) => (
   <div>
-    <Navbar />
+    <Navbar {...props} />
 
     <Container>
       <Query query={GET_DEVICES} fetchPolicy='network-only'>
