@@ -3,6 +3,7 @@ import { Route } from 'react-router-dom';
 
 import Dashboard from './Dashboard';
 import ChooseDeviceModel from './ChooseDeviceModel';
+import InstallDevice from './InstallDevice';
 import ChooseDevice from './ChooseDevice';
 import Device from './Device';
 import Signup from './Signup';
@@ -14,7 +15,8 @@ class App extends Component {
       <div>
         <Route path='/dashboard' exact component={Dashboard} />
         <Route path='/add-device' exact component={ChooseDeviceModel} />
-        <Route path='/add-device/:deviceModelId' exact component={ChooseDevice} />
+        <Route path='/install-device/:deviceModelId' exact component={InstallDevice} />
+        <Route path='/choose-device/:deviceModelId' exact component={ChooseDevice} />
         <Route path='/devices/:deviceId' exact component={Device} />
         <Route path='/' exact component={Signup} />
         <Route path='/login' exact component={Login} />

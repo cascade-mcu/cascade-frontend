@@ -45,7 +45,7 @@ export default () => (
                 } = deviceModel;
 
                 return (
-                  <Button component={Link} to={`/add-device/${id}`} key={id} variant='raised' fullWidth disabled={!available}>
+                  <Button component={Link} to={`/install-device/${id}`} key={id} variant='raised' fullWidth disabled={!available}>
                     {name} {!available && '(Coming Soon)'}
                   </Button>
                 );
