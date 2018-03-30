@@ -1,6 +1,6 @@
 ## Start
 
-REACT_APP_GRAPHQL_URI=https://cascade-server.now.sh yarn start
+REACT_APP_GRAPHQL_URI=https://cascade-backend.herokuapp.com yarn start
 
 
 This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).
