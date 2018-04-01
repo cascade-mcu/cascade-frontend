@@ -14,6 +14,8 @@ import Button from 'material-ui/Button';
 import Navbar from './Navbar';
 import Container from './Container';
 
+import { client } from '../index';
+
 const SIGNUP = gql`
   mutation signup($firstName: String!, $lastName: String!, $email: String!, $password: String!) {
     signup(firstName: $firstName, lastName: $lastName, email: $email, password: $password) {
@@ -52,6 +54,7 @@ class Signup extends Component {
 
   handleSuccess(token) {
     this.saveToken(token);
+    client.resetStore();
     this.props.history.push('/dashboard');
   }
 

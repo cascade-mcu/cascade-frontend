@@ -41,7 +41,6 @@ const RENAME_DEVICE = gql`
   }
 `;
 
-
 class SetupSuccess extends Component {
   handleSuccess(data) {
     if (!data) return;

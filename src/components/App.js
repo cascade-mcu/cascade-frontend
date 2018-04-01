@@ -1,5 +1,4 @@
-import React, { Component } from 'react';
-import { Route } from 'react-router-dom';
+import React from 'react';
 
 import Dashboard from './Dashboard';
 import ChooseDeviceModel from './ChooseDeviceModel';
@@ -9,22 +8,18 @@ import SetupSuccess from './SetupSuccess';
 import Device from './Device';
 import Signup from './Signup';
 import Login from './Login';
+import AuthedRoute from './AuthedRoute';
+import UnauthedRoute from './UnauthedRoute';
 
-class App extends Component {
-  render() {
-    return (
-      <div>
-        <Route path='/signup' exact component={Signup} />
-        <Route path='/login' exact component={Login} />
-        <Route path='/dashboard' exact component={Dashboard} />
-        <Route path='/add-device' exact component={ChooseDeviceModel} />
-        <Route path='/install-device/:deviceModelId' exact component={InstallDevice} />
-        <Route path='/choose-device/:deviceModelId' exact component={ChooseDevice} />
-        <Route path='/setup-success/:deviceId' exact component={SetupSuccess} />
-        <Route path='/devices/:deviceId' exact component={Device} />
-      </div>
-    );
-  }
-}
-
-export default App;
+export default () => (
+  <div>
+    <UnauthedRoute path='/signup' exact component={Signup} />
+    <UnauthedRoute path='/login' exact component={Login} />
+    <AuthedRoute path='/dashboard' exact component={Dashboard} />
+    <AuthedRoute path='/add-device' exact component={ChooseDeviceModel} />
+    <AuthedRoute path='/install-device/:deviceModelId' exact component={InstallDevice} />
+    <AuthedRoute path='/choose-device/:deviceModelId' exact component={ChooseDevice} />
+    <AuthedRoute path='/setup-success/:deviceId' exact component={SetupSuccess} />
+    <AuthedRoute path='/devices/:deviceId' exact component={Device} />
+  </div>
+);

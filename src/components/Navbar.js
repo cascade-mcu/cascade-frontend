@@ -36,9 +36,11 @@ class Navbar extends Component {
             <div style={styles.container}>
               <AppBar position="static" color="default">
                 <Toolbar>
-                  <Typography variant="title" color="inherit" style={styles.title}>
-                    Cascade
-                  </Typography>
+                  <Link to='/'>
+                    <Typography variant="title" color="inherit" style={styles.title}>
+                      Cascade
+                    </Typography>
+                  </Link>
                   {user && <Button component={Link} to='/dashboard'>
                     Dashboard ({user.email})
                   </Button>}
