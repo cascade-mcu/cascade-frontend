@@ -4,19 +4,22 @@ import _ from 'lodash';
 import { Query } from 'react-apollo';
 import Button from 'material-ui/Button';
 import { Mutation } from 'react-apollo';
+import Promise from 'bluebird';
 
 import Navbar from './Navbar';
 import Container from './Container';
 import Loader from './Loader';
 
 const GET_DEVICES = gql`
-  query getDevices($deviceModelId: ID!) {
+  query getDevices($deviceModelId: ID!, $networkDeviceIds: [ID!]!) {
     devices(where: {
+      id_in: $networkDeviceIds,
       deviceModel: {
         id: $deviceModelId
       }
     }) {
       id
+      name
     }
 
     me {
@@ -45,6 +48,46 @@ const ADD_DEVICE_TO_USER = gql`
 `;
 
 export default class ChooseDevice extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      networkDevices: [],
+    };
+  }
+
+  networkDeviceAddresses() {
+    return [
+      'localhost:3000',
+    ];
+  }
+
+  async networkDevices() {
+    return Promise.map(this.networkDeviceAddresses(), (address) => {
+      const rootUrl = `http://${address}`;
+
+      return fetch(rootUrl)
+        .then((r) => r.json())
+        .then((json) => ({
+          ...json,
+          address,
+          rootUrl,
+        }));
+    });
+  }
+
+  componentWillMount() {
+    this.fetchNetworkDevices();
+  }
+
+  async fetchNetworkDevices() {
+    const networkDevices = await this.networkDevices();
+
+    this.setState({
+      networkDevices,
+    });
+  }
+
   handleSuccess(data) {
     if (!data) return;
 
@@ -55,6 +98,10 @@ export default class ChooseDevice extends Component {
     } = data;
 
     this.props.history.push(`/setup-success/${id}`);
+  }
+
+  networkDeviceIds() {
+    return _.map(_.filter(this.state.networkDevices, 'cascadeCompatible'), 'id');
   }
 
   render() {
@@ -70,7 +117,7 @@ export default class ChooseDevice extends Component {
       <div>
         <Navbar {...this.props} />
         <Container>
-          <Query query={GET_DEVICES} variables={{ deviceModelId }}>
+          <Query query={GET_DEVICES} variables={{ deviceModelId, networkDeviceIds: this.networkDeviceIds() }}>
             {({ loading, error, data }) => {
               if (loading) return <Loader />;
               if (error) return `Error! ${error.message}`;
@@ -87,6 +134,7 @@ export default class ChooseDevice extends Component {
                   {_.map(devices, (device) => {
                     const {
                       id: deviceId,
+                      name,
                     } = device;
 
                     const variables = {
@@ -101,7 +149,7 @@ export default class ChooseDevice extends Component {
 
                           return (
                             <Button onClick={() => addDeviceToUser({ variables })} variant='raised' fullWidth>
-                              cascade-{deviceId}
+                              {name || `cascade-{deviceId}`}
                             </Button>
                           );
                         }}

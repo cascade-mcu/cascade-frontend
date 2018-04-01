@@ -20,6 +20,7 @@ const GET_DEVICE = gql`
       id: $deviceId
    }) {
       id
+      name
     }
   }
 `;
@@ -88,12 +89,12 @@ class SetupSuccess extends Component {
                         this.handleSuccess(data);
 
                         return (
-                        <form onSubmit={handleSubmit(({ name }) => renameDevice({
-                          variables: {
-                            name,
-                            deviceId: id,
-                          }
-                        }))}>
+                          <form onSubmit={handleSubmit(({ name }) => renameDevice({
+                            variables: {
+                              name,
+                              deviceId: id,
+                            }
+                          }))}>
                             <Field name='name' component={TextField} placeholder='Name' />
                             <Button type='submit'>
                               Next
