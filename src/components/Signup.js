@@ -22,6 +22,25 @@ const SIGNUP = gql`
   }
 `;
 
+const validate = values => {
+  const errors = {}
+  if (!values.firstName) {
+    errors.firstName = 'Required'
+  }
+  if (!values.lastName) {
+    errors.lastName = 'Required'
+  }
+  if (!values.password) {
+    errors.password = 'Required'
+  }
+  if (!values.email) {
+    errors.email = 'Required'
+  } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)) {
+    errors.email = 'Invalid email address'
+  }
+  return errors
+}
+
 class Signup extends Component {
   token(data) {
     return _.get(data, 'signup.token');
@@ -79,5 +98,6 @@ class Signup extends Component {
 export default compose(
   reduxForm({
     form: 'signup',
+    validate, 
   }),
 )(Signup);
