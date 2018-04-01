@@ -58,34 +58,50 @@ export default class ChooseDevice extends Component {
 
   networkDeviceAddresses() {
     return [
-      'localhost:3000',
+      'localhost:3001',
     ];
   }
 
   async networkDevices() {
-    return Promise.map(this.networkDeviceAddresses(), (address) => {
+    const all = [];
+
+    await Promise.map(this.networkDeviceAddresses(), async (address) => {
       const rootUrl = `http://${address}`;
 
-      return fetch(rootUrl)
-        .then((r) => r.json())
-        .then((json) => ({
-          ...json,
-          address,
-          rootUrl,
-        }));
+      try {
+        const result = await fetch(rootUrl)
+          .then((r) => r.json())
+          .then((json) => ({
+            ...json,
+            address,
+            rootUrl,
+          }));
+
+        all.push(result);
+      } catch (e) {
+        console.log('No device here');
+      }
     });
+
+    return all;
   }
 
   componentWillMount() {
     this.fetchNetworkDevices();
+
+    setInterval(() => this.fetchNetworkDevices(), 3000);
   }
 
   async fetchNetworkDevices() {
-    const networkDevices = await this.networkDevices();
+    try {
+      const networkDevices = await this.networkDevices();
 
-    this.setState({
-      networkDevices,
-    });
+      this.setState({
+        networkDevices,
+      });
+    } catch(e) {
+      console.log('No device on localhost:3001');
+    }
   }
 
   handleSuccess(data) {
