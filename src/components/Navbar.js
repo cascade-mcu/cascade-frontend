@@ -44,6 +44,9 @@ class Navbar extends Component {
                   {user && <Button component={Link} to='/dashboard'>
                     Dashboard ({user.email})
                   </Button>}
+                  {user && <Button component={Link} to='/locations'>
+                    Locations
+                  </Button>}
                   {user && <Button onClick={() => this.logout()}>
                     Logout
                   </Button>}
