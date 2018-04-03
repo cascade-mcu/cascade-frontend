@@ -10,6 +10,7 @@ import Signup from './Signup';
 import Login from './Login';
 import Locations from './Locations';
 import Places from './Places';
+import Scenes from './Scenes';
 import AuthedRoute from './AuthedRoute';
 import UnauthedRoute from './UnauthedRoute';
 
@@ -20,6 +21,7 @@ export default () => (
     <AuthedRoute path='/dashboard' exact component={Dashboard} />
     <AuthedRoute path='/locations' exact component={Locations} />
     <AuthedRoute path='/locations/:locationId' exact component={Places} />
+    <AuthedRoute path='/scenes' exact component={Scenes} />
     <AuthedRoute path='/add-device' exact component={ChooseDeviceModel} />
     <AuthedRoute path='/install-device/:deviceModelId' exact component={InstallDevice} />
     <AuthedRoute path='/choose-device/:deviceModelId' exact component={ChooseDevice} />
