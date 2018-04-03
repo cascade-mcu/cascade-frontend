@@ -89,7 +89,11 @@ export default class ChooseDevice extends Component {
   componentWillMount() {
     this.fetchNetworkDevices();
 
-    setInterval(() => this.fetchNetworkDevices(), 3000);
+    this.fetchDevicesInterval = setInterval(() => this.fetchNetworkDevices(), 3000);
+  }
+
+  componentWillUnmount() {
+    clearInterval(this.fetchDevicesInterval);
   }
 
   async fetchNetworkDevices() {
