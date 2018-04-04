@@ -16,6 +16,21 @@ const GET_SCENE = gql`
       id
       name
       createdAt
+
+      location {
+        places {
+          devices {
+            name
+
+            sensors {
+              logs {
+                id
+                value
+              }
+            }
+          }
+        }
+      }
     }
   }
 `;

@@ -24,12 +24,18 @@ const GET_DEVICES = gql`
 
     me {
       id
+
+      defaultLocation {
+        defaultPlace {
+          id
+        }
+      }
     }
   }
 `;
 
 const ADD_DEVICE_TO_USER = gql`
-  mutation addDeviceToUser($deviceId: ID!, $userId: ID!) {
+  mutation addDeviceToUser($deviceId: ID!, $userId: ID!, $placeId: ID!) {
     updateDevice(
       where: {
         id: $deviceId
@@ -38,6 +44,11 @@ const ADD_DEVICE_TO_USER = gql`
         user: {
           connect: {
             id: $userId
+          }
+        }
+        place: {
+          connect: {
+            id: $placeId
           }
         }
       }
@@ -146,6 +157,11 @@ export default class ChooseDevice extends Component {
                 devices,
                 me: {
                   id: userId,
+                  defaultLocation: {
+                    defaultPlace: {
+                      id: placeId,
+                    },
+                  },
                 },
               } = data;
 
@@ -160,6 +176,7 @@ export default class ChooseDevice extends Component {
                     const variables = {
                       userId,
                       deviceId,
+                      placeId,
                     };
 
                     return (
