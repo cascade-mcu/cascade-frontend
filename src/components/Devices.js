@@ -4,7 +4,13 @@ import _ from 'lodash';
 import Button from 'material-ui/Button';
 import { Link } from 'react-router-dom';
 import { Query } from 'react-apollo';
-import { LineChart, Line, XAxis, YAxis } from 'recharts';
+import {
+  LineChart,
+  Line,
+  XAxis,
+  YAxis,
+  Tooltip,
+} from 'recharts';
 import moment from 'moment';
 
 import Navbar from './Navbar';
@@ -105,7 +111,8 @@ export default (props) => (
                                 <XAxis dataKey='createdAt' tickFormatter={(createdAt) => moment(createdAt).format()}/>
                                 <YAxis/>
 
-                                <Line type="monotone" dataKey="value" stroke="#82ca9d" dot={false} />
+                                <Line type='monotone' dataKey='value' stroke='#82ca9d' dot={false} />
+                                <Tooltip/>
                               </LineChart>
 
                               Logs
