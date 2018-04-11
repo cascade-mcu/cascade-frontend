@@ -38,7 +38,7 @@ const GET_DEVICES = gql`
           name
         }
 
-        logs {
+        logs(last: 100) {
           id
           value
           readingTime
