@@ -1,4 +1,6 @@
 import React from 'react';
+import Button from 'material-ui/Button';
+import Switch from 'material-ui/Switch';
 
 import Dashboard from './Dashboard';
 import ChooseDeviceModel from './ChooseDeviceModel';
@@ -6,15 +8,14 @@ import InstallDevice from './InstallDevice';
 import ChooseDevice from './ChooseDevice';
 import SetupSuccess from './SetupSuccess';
 import Device from './Device';
-import Signup from './Signup';
-import Login from './Login';
 import Locations from './Locations';
 import Places from './Places';
 import Scenes from './Scenes';
 import Scene from './Scene';
+import Login from './Login';
+import Signup from './Signup';
 import AuthedRoute from './AuthedRoute';
 import UnauthedRoute from './UnauthedRoute';
-import Devices from './Devices';
 
 export default () => (
   <div>
@@ -30,6 +31,5 @@ export default () => (
     <AuthedRoute path='/choose-device/:deviceModelId' exact component={ChooseDevice} />
     <AuthedRoute path='/setup-success/:deviceId' exact component={SetupSuccess} />
     <AuthedRoute path='/devices/:deviceId' exact component={Device} />
-    <AuthedRoute path='/devices' exact component={Devices} />
   </div>
 );
