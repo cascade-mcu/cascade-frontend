@@ -51,7 +51,7 @@ class NavbarLink2 extends Component {
 
   render() {
     return (
-      <Link {...this.props} style={{textDecoration: 'none', margin:'20px 10px 0 0'}} onMouseEnter={() => this.handleMouseEnter()} onMouseLeave={() => this.handleMouseLeave()}>
+      <Link {...this.props} style={{textDecoration: 'none', margin:'20px 30px 0 0'}} onMouseEnter={() => this.handleMouseEnter()} onMouseLeave={() => this.handleMouseLeave()}>
         <Typography style={{ borderBottom: this.state.hover ? '1px solid #f38411' : '1px solid #171a1f' }}>{this.props.children}</Typography>
       </Link>
     )
@@ -120,7 +120,7 @@ const styles = {
     marginTop: '7.5px',
     width: '60px',
     height: '75px',
-    marginRight: '15px',
+    marginRight: '50px',
     marginLeft: '50px',
   },
   title: {
@@ -171,7 +171,7 @@ const styles = {
     letterSpacing: '1px',
     textAlign: 'center',
     textDecoration: 'none',
-    marginLeft: '550px', 
+    marginLeft: '475px', 
   },
   faBars: {
     marginLeft: '5px',
