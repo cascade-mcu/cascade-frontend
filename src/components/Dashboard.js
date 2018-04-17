@@ -13,10 +13,6 @@ import Typography from 'material-ui/Typography';
 import Divider from 'material-ui/Divider';
 import PropTypes from 'prop-types';
 import { withStyles } from 'material-ui/styles';
-import ExpansionPanel, {
-  ExpansionPanelDetails,
-  ExpansionPanelSummary,
-} from 'material-ui/ExpansionPanel';
 import FontAwesomeIcon from '@fortawesome/react-fontawesome';
 import faToggleOn from '@fortawesome/fontawesome-free-solid/faToggleOn';
 import faLightbulb from '@fortawesome/fontawesome-free-solid/faLightbulb';
@@ -58,16 +54,7 @@ export default (props) => (
           return (
             <div style={styles.container}>
               <div style={styles.centeredContainer}>
-                {_.isEmpty(devices) && <EmptyDashboard />}
-
-                {_.map(devices, (device) => {
-                  return (
-                    <Button style={styles.button} component={Link} to={`/devices/${device.id}`} key={device.id} variant='raised' fullWidth>
-                      {device.name}
-                    </Button>
-                  );
-                })}
-
+                
             <div style={styles.powerWidget}>
             <div style={styles.powerInfo}> <FontAwesomeIcon style={styles.faLightbulb} icon={faLightbulb} />
             <FontAwesomeIcon style={styles.faToggleOn} icon={faToggleOn} />
@@ -102,7 +89,6 @@ export default (props) => (
               <div style={styles.box}><img style = {styles.icons} src={'/img/sm-pressure.png'} /><Typography style={styles.text}>Pressure</Typography> </div>
               </div>
               <img style = {styles.mainLayer} src={'/img/widget.png'} /> 
-              <div style={styles.wrapper}> </div>
               </div>
               </div>
           );
@@ -133,33 +119,7 @@ button: {
   margin: 'auto',
   marginTop: '20px',
 },
-
-// ----------- ICONS ---------
-
-faLeaf: {
-  fontSize: '35px',
-  opacity: '0.2',
-  margin: '7px 0 0 10px',
-},
-faLightbulb: {
-  fontSize: '35px',
-  opacity: '0.2',
-  margin: '7px 0 0 10px',
-},
-faToggleOn: {
-  float: 'right',
-  fontSize: '50px',
-  opacity: '0.2',
-  marginRight: '10px',
-},
-faCloud: {
-  fontSize: '35px',
-  opacity: '0.2',
-  margin: '7px 0 0 10px',
-},
-
 // ----------- POWER WIDGET ---------- 
-
 powerWidget: {
   marginTop: '130px',
   marginLeft: '20px',
@@ -192,9 +152,7 @@ powerWrapper: {
 powerButton: {
   margin: 'auto',
 },
-
 // ----------- WEATHER WIDGET ---------- 
-
 weatherWidget: {
   width: '550px',
   height: '200px',
@@ -228,9 +186,7 @@ weather: {
   height: '150px',
   marginLeft: '25px',
 },
-
 // ----------- MAIN WIDGET ---------- 
-
 mainWidget: {
   marginTop: '130px',
   marginLeft: '20px',
@@ -252,21 +208,6 @@ mainLayer: {
   zIndex: '1',
   left: '750px',
   top: '225px',
-},
-/*circleAnimated: {
- position: 'absolute',
-  zIndex: '1',
-  left: '925px',
-  top: '235px',
-}, 
-circleLoad: {
-  height: '125px',
-}, */
-wrapper: {
-  height: '125px',
-  width: '125px',
-  // backgroundColor: '#39414b',
-  marginLeft: '300px',
 },
 text: {
 textAlign: 'center',
@@ -301,6 +242,28 @@ display: 'inline-block',
     color: '#FFFFFF',
     fontSize: '12px',
   },
+// ----------- ICONS ---------
+faLeaf: {
+  fontSize: '35px',
+  opacity: '0.2',
+  margin: '7px 0 0 10px',
+},
+faLightbulb: {
+  fontSize: '35px',
+  opacity: '0.2',
+  margin: '7px 0 0 10px',
+},
+faToggleOn: {
+  float: 'right',
+  fontSize: '50px',
+  opacity: '0.2',
+  marginRight: '10px',
+},
+faCloud: {
+  fontSize: '35px',
+  opacity: '0.2',
+  margin: '7px 0 0 10px',
+},
 // ------- EXPAND MENU ------
 expandLink: {
   height: '150px',
@@ -326,4 +289,15 @@ mainExpand: {
   marginTop: '80px',
   marginLeft: '10px',
 },
+/*
+{_.isEmpty(devices) && <EmptyDashboard />}
+
+                {_.map(devices, (device) => {
+                  return (
+                    <Button style={styles.button} component={Link} to={`/devices/${device.id}`} key={device.id} variant='raised' fullWidth>
+                      {device.name}
+                    </Button>
+                  );
+                })} 
+                */
   }

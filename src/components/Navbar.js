@@ -51,8 +51,7 @@ class NavbarLink2 extends Component {
 
   render() {
     return (
-      <Link {...this.props} style={{ textDecoration: 'none', margin:'20px 10px 0 0'}} onMouseEnter={() => this.handleMouseEnter()} onMouseLeave={() => this.handleMouseLeave()}>
-        <Typography style={{ color: '#FFFFFF', fontSize: '16px', letterSpacing: '0.2px', textAlign: 'left', textDecoration: 'none', marginLeft: '15px'}}>{this.props.children}</Typography>
+      <Link {...this.props} style={{textDecoration: 'none', margin:'20px 10px 0 0'}} onMouseEnter={() => this.handleMouseEnter()} onMouseLeave={() => this.handleMouseLeave()}>
         <Typography style={{ borderBottom: this.state.hover ? '1px solid #f38411' : '1px solid #171a1f' }}>{this.props.children}</Typography>
       </Link>
     )
@@ -78,23 +77,22 @@ class Navbar extends Component {
                 <Toolbar>
                 <img style = {styles.icon} src={'/img/icon.png'} />
                 {user && <NavbarLink2 to='/add-device'>
-                  + Add device 
+                <Typography style={styles.Typography}>+ Add Device</Typography>
                   </NavbarLink2>}
                   {user && <NavbarLink2 to='/places'>
-                  Rooms
+                  <Typography style={styles.Typography}>Rooms</Typography>
                   </NavbarLink2>}
                   {user && <NavbarLink2 to='/locations'>
-                    Locations
+                  <Typography style={styles.Typography}>Locations</Typography>
                   </NavbarLink2>}
                   {user && <NavbarLink2 to='/dashboard'>
-                    Dashboard
+                  <Typography style={styles.Typography}>Dashboard</Typography>
                   </NavbarLink2>}
                   {user && <Link style= {styles.market} to='/'>
                   Market
                   </Link>}
-                  {user && <Button onClick={() => this.logout()} style={styles.title}>
-                  <Typography style={styles.logout}> {user.firstName} </Typography>
-                   <FontAwesomeIcon style={styles.faBars} icon={faBars} />
+                  {user && <Button onClick={() => this.logout()}>
+                  <Typography style={styles.logout}> {user.firstName}<FontAwesomeIcon style={styles.faBars} icon={faBars} /></Typography>
                   </Button>}
                 </Toolbar>
               </AppBar>
@@ -108,6 +106,7 @@ class Navbar extends Component {
 
 const styles = {
   container: {
+    display: 'inline-block',
   },
   appbar: {
     width: '100%',
@@ -135,20 +134,15 @@ const styles = {
   },
   Typography: {
     fontSize: '16px',
-    //lineHeight: '1.98',
-    letterSpacing: '0.2px',
-    textAlign: 'left',
+    letterSpacing: '1px',
     textDecoration: 'none',
-    marginLeft: '15px',
+    color: '#FFFFFF',
   },
   NavbarLink: {
     fontSize: '16px',
-    //lineHeight: '1.98',
     letterSpacing: '0.2px',
     textAlign: 'left',
     textDecoration: 'none',
-    marginLeft: '15px',
-    
   },
   NavbarLink2: {
     fontSize: '16px',
@@ -160,12 +154,11 @@ const styles = {
     color: '#FFFFFF',
   },
   logout: {
+    marginLeft: '50px',
     fontSize: '16px',
-    //lineHeight: '1.98',
-    letterSpacing: '0.2px',
-    marginLeft: '575px', 
-    color: '#ffffff',
+    letterSpacing: '1px',
     textDecoration: 'none',
+    color: '#FFFFFF',
   },
   market: {
     width: '120px',
@@ -175,8 +168,10 @@ const styles = {
     backgroundColor: '#000000',
     color: '#008975',
     fontSize: '16px',
+    letterSpacing: '1px',
     textAlign: 'center',
     textDecoration: 'none',
+    marginLeft: '550px', 
   },
   faBars: {
     marginLeft: '5px',
