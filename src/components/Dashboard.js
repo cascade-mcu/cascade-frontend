@@ -72,30 +72,35 @@ export default (props) => (
             <div style={styles.powerInfo}> <FontAwesomeIcon style={styles.faLightbulb} icon={faLightbulb} />
             <FontAwesomeIcon style={styles.faToggleOn} icon={faToggleOn} />
             </div>
+            <div style={styles.expandLink}>
+            <Link to="/"><img style = {styles.expand} src={'/img/expand.png'} /></Link>
+            </div>
             <img style = {styles.lightBulb} src={'/img/lightbulb.png'} />
             </div>
 
             <div style={styles.weatherWidget}>
             <div style={styles.weatherInfo}><FontAwesomeIcon style={styles.faCloud} icon={faCloud} />
             <FontAwesomeIcon style={styles.faToggleOn} icon={faToggleOn} /></div>
-          
+            <div style={styles.expandLink}>
+            <Link to="/"><img style = {styles.expand} src={'/img/expand.png'} /></Link>
             </div>
             </div>
-
+            
+            </div>
             <div style={styles.mainWidget}>
             <div style={styles.mainInfo}><FontAwesomeIcon style={styles.faLeaf} icon={faLeaf} />
             <FontAwesomeIcon style={styles.faToggleOn} icon={faToggleOn} />
              </div>
+             <div style={styles.mainExpandLink}>
+            <Link to="/"><img style = {styles.mainExpand} src={'/img/expand.png'} /></Link>
+            </div>
 
               <div style={styles.boxContainer}>
-
               <div style={styles.box}><img style = {styles.icons} src={'/img/sm-temp.png'} /> <Typography style={styles.text}>Temperature</Typography> </div>
               <div style={styles.box2}><img style = {styles.icons} src={'/img/sm-light.png'} /> <Typography style={styles.text}>Light</Typography> </div>
               <div style={styles.box2}><img style = {styles.icons} src={'/img/sm-humidity.png'} /><Typography style={styles.text}>Humidity</Typography> </div>
               <div style={styles.box}><img style = {styles.icons} src={'/img/sm-pressure.png'} /><Typography style={styles.text}>Pressure</Typography> </div>
-
               </div>
-
               <img style = {styles.mainLayer} src={'/img/widget.png'} /> 
               <div style={styles.wrapper}> </div>
               </div>
@@ -114,7 +119,7 @@ container: {
   width: '90%',
   padding: step(),
   display: 'flex',
-  flexWrap: 'no-wrap',
+  flexWrap: 'wrap',
 },
 centeredContainer: {
   // textAlign: 'center',
@@ -195,6 +200,7 @@ weatherWidget: {
   height: '200px',
   backgroundColor: '#292f36',
   marginTop: '75px',
+  display: 'inline-block',
 },
 weatherInfo: {
   width: '550px',
@@ -295,4 +301,29 @@ display: 'inline-block',
     color: '#FFFFFF',
     fontSize: '12px',
   },
-}
+// ------- EXPAND MENU ------
+expandLink: {
+  height: '150px',
+  width: '50px',
+  backgroundColor: '#3f4854',
+  float: 'right',
+},
+expand: {
+  height: '50px',
+  width: '30px',
+  marginTop: '50px',
+  marginLeft: '10px',
+},
+mainExpandLink: {
+  height: '220px',
+  width: '50px',
+  backgroundColor: '#3f4854',
+  float: 'right',
+},
+mainExpand: {
+  height: '50px',
+  width: '30px',
+  marginTop: '80px',
+  marginLeft: '10px',
+},
+  }

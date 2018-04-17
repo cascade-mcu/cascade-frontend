@@ -51,7 +51,7 @@ class NavbarLink2 extends Component {
 
   render() {
     return (
-      <Link {...this.props} style={{ textDecoration: 'none'}} onMouseEnter={() => this.handleMouseEnter()} onMouseLeave={() => this.handleMouseLeave()}>
+      <Link {...this.props} style={{ textDecoration: 'none', margin:'20px 10px 0 0'}} onMouseEnter={() => this.handleMouseEnter()} onMouseLeave={() => this.handleMouseLeave()}>
         <Typography style={{ color: '#FFFFFF', fontSize: '16px', letterSpacing: '0.2px', textAlign: 'left', textDecoration: 'none', marginLeft: '15px'}}>{this.props.children}</Typography>
         <Typography style={{ borderBottom: this.state.hover ? '1px solid #f38411' : '1px solid #171a1f' }}>{this.props.children}</Typography>
       </Link>
@@ -78,7 +78,7 @@ class Navbar extends Component {
                 <Toolbar>
                 <img style = {styles.icon} src={'/img/icon.png'} />
                 {user && <NavbarLink2 to='/add-device'>
-                  Add device 
+                  + Add device 
                   </NavbarLink2>}
                   {user && <NavbarLink2 to='/places'>
                   Rooms
@@ -126,45 +126,42 @@ const styles = {
   },
   title: {
     fontSize: '16px',
-    lineHeight: '1.98',
+    //lineHeight: '1.98',
     letterSpacing: '0.2px',
     textAlign: 'left',
     textDecoration: 'none',
     marginLeft: '15px',
-    borderBottom: '2px solid #171a1f',
     color: '#FFFFFF',
   },
   Typography: {
     fontSize: '16px',
-    lineHeight: '1.98',
+    //lineHeight: '1.98',
     letterSpacing: '0.2px',
     textAlign: 'left',
     textDecoration: 'none',
     marginLeft: '15px',
-    borderBottom: '2px solid #171a1f',
   },
   NavbarLink: {
     fontSize: '16px',
-    lineHeight: '1.98',
+    //lineHeight: '1.98',
     letterSpacing: '0.2px',
     textAlign: 'left',
     textDecoration: 'none',
     marginLeft: '15px',
-    borderBottom: '2px solid #171a1f',
+    
   },
   NavbarLink2: {
     fontSize: '16px',
-    lineHeight: '1.98',
+    //lineHeight: '1.98',
     letterSpacing: '0.2px',
     textAlign: 'left',
     textDecoration: 'none',
     marginLeft: '15px',
-    borderBottom: '2px solid #171a1f',
     color: '#FFFFFF',
   },
   logout: {
     fontSize: '16px',
-    lineHeight: '1.98',
+    //lineHeight: '1.98',
     letterSpacing: '0.2px',
     marginLeft: '575px', 
     color: '#ffffff',
