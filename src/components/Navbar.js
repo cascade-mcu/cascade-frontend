@@ -15,6 +15,8 @@ import { withStyles } from 'material-ui/styles';
 import FontAwesomeIcon from '@fortawesome/react-fontawesome';
 import faBars from '@fortawesome/fontawesome-free-solid/faBars';
 
+import NavbarLink from './NavbarLink';
+
 const Link = Radium(RouterLink)
 
 const ME = gql`
@@ -27,36 +29,6 @@ const ME = gql`
   }
 `;
 
-
-class NavbarLink2 extends Component {
-  constructor(props) {
-    super(props)
-
-    this.state = {
-      hover: false
-    }
-  }
-
-  handleMouseEnter() {
-    this.setState({
-      hover: true,
-    })
-  }
-
-  handleMouseLeave() {
-    this.setState({
-      hover: false,
-    })
-  }
-
-  render() {
-    return (
-      <Link {...this.props} style={{textDecoration: 'none', margin:'20px 30px 0 0'}} onMouseEnter={() => this.handleMouseEnter()} onMouseLeave={() => this.handleMouseLeave()}>
-        <Typography style={{ borderBottom: this.state.hover ? '1px solid #f38411' : '1px solid #171a1f' }}>{this.props.children}</Typography>
-      </Link>
-    )
-  }
-}
 
 class Navbar extends Component {
   logout() {
@@ -73,29 +45,32 @@ class Navbar extends Component {
           const user = _.get(data, 'me');
           return (
             <div style={styles.container}>
-              <AppBar style={styles.appbar}>
-                <Toolbar>
-                <img style = {styles.icon} src={'/img/icon.png'} />
-                {user && <NavbarLink2 to='/devices'>
-                <Typography style={styles.Typography}>+ Add Device</Typography>
-                  </NavbarLink2>}
-                  {user && <NavbarLink2 to='/places'>
-                  <Typography style={styles.Typography}>Rooms</Typography>
-                  </NavbarLink2>}
-                  {user && <NavbarLink2 to='/locations'>
-                  <Typography style={styles.Typography}>Locations</Typography>
-                  </NavbarLink2>}
-                  {user && <NavbarLink2 to='/dashboard'>
-                  <Typography style={styles.Typography}>Dashboard</Typography>
-                  </NavbarLink2>}
-                  {user && <Link style= {styles.market} to='/'>
+              <div style={styles.leftContainer}>
+                <NavbarLink to='/'>
+                  <img style={styles.icon} src={'/img/icon.png'} />
+                </NavbarLink>
+                {user && <NavbarLink to='/add-device'>
+                  + Add Device
+                </NavbarLink>}
+                {user && <NavbarLink to='/places'>
+                  Rooms
+                </NavbarLink>}
+                {user && <NavbarLink to='/locations'>
+                  Locations
+                </NavbarLink>}
+                {user && <NavbarLink to='/dashboard'>
+                  Dashboard
+                </NavbarLink>}
+              </div>
+              <div style={styles.rightContainer}>
+                {user && <Link style= {styles.market} to='/'>
                   Market
-                  </Link>}
-                  {user && <Button onClick={() => this.logout()}>
-                  <Typography style={styles.logout}> {user.firstName}<FontAwesomeIcon style={styles.faBars} icon={faBars} /></Typography>
-                  </Button>}
-                </Toolbar>
-              </AppBar>
+                </Link>}
+                {user && <Button onClick={() => this.logout()}>
+                  {user.firstName}
+                  <FontAwesomeIcon style={styles.faBars} icon={faBars} />
+                </Button>}
+              </div>
             </div>
           );
         }}
@@ -106,45 +81,26 @@ class Navbar extends Component {
 
 const styles = {
   container: {
-    display: 'inline-block',
-  },
-  appbar: {
-    width: '100%',
-    height: '90px',
+    marginBottom: '100px',
+    padding: '10px 20px',
     backgroundColor: '#000000',
     textTransform: 'uppercase',
-    display: 'inline-block',
-    textDecoration: 'none',
+    display: 'flex',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+  },
+  leftContainer: {
+    display: 'flex',
+    alignItems: 'center',
+  },
+  rightContainer: {
+    display: 'flex',
+    alignItems: 'center',
   },
   icon: {
-    marginTop: '7.5px',
-    width: '60px',
-    height: '75px',
-    marginRight: '50px',
-    marginLeft: '50px',
+    height: '50px',
   },
   title: {
-    fontSize: '16px',
-    //lineHeight: '1.98',
-    letterSpacing: '0.2px',
-    textAlign: 'left',
-    textDecoration: 'none',
-    marginLeft: '15px',
-    color: '#FFFFFF',
-  },
-  Typography: {
-    fontSize: '16px',
-    letterSpacing: '1px',
-    textDecoration: 'none',
-    color: '#FFFFFF',
-  },
-  NavbarLink: {
-    fontSize: '16px',
-    letterSpacing: '0.2px',
-    textAlign: 'left',
-    textDecoration: 'none',
-  },
-  NavbarLink2: {
     fontSize: '16px',
     //lineHeight: '1.98',
     letterSpacing: '0.2px',
@@ -171,11 +127,11 @@ const styles = {
     letterSpacing: '1px',
     textAlign: 'center',
     textDecoration: 'none',
-    marginLeft: '475px', 
+    marginLeft: '475px',
   },
   faBars: {
-    marginLeft: '5px',
     fontSize: '16px',
+    color: '#fff',
   },
 }
 
