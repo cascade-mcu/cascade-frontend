@@ -151,7 +151,6 @@ export default (props) => (
 const styles = {
   container: {
     backgroundColor: '#292f36',
-    border: '2px dashed black',
     minHeight: '600px',
     padding: step(),
     color: '#FFFFFF',

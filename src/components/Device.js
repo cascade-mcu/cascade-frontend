@@ -145,10 +145,8 @@ export default compose(
 const styles = {
   container: {
     backgroundColor: '#292f36',
-    border: '2px dashed black',
     minHeight: '600px',
     color: '#FFFFFF',
     letterSpacing: '1.5px',
-    // justifyContent: 'center',
   },
 };
