@@ -1,25 +1,26 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
+import step from '../../theme/step';
+
 export default (props) => (
   <div style={styles.container}>
     <Link to='/'>
-      <img style={styles.img} src={'/img/expand.png'} />
+      <img alt='Expand' style={styles.img} src={'/img/expand.png'} />
     </Link>
   </div>
 );
 
 const styles = {
   container: {
-    height: '150px',
-    width: '50px',
     backgroundColor: '#3f4854',
-    float: 'right',
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'center',
+    padding: step(0.5),
   },
   img: {
     height: '50px',
     width: '30px',
-    marginTop: '50px',
-    marginLeft: '10px',
   },
 };

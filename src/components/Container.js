@@ -1,15 +1,12 @@
 import React, { Component } from 'react';
-import Grid from 'material-ui/Grid';
 import step from '../theme/step';
 
 export default class Container extends Component {
   render() {
     return (
-      <Grid container style={styles.container} {...this.props}>
-        <Grid item xs={12}>
-          {this.props.children}
-        </Grid>
-      </Grid>
+      <div style={styles.container}>
+        {this.props.children}
+      </div>
     );
   }
 }

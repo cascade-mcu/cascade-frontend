@@ -47,7 +47,7 @@ class Navbar extends Component {
             <div style={styles.container}>
               <div style={styles.leftContainer}>
                 <NavbarLink to='/'>
-                  <img style={styles.icon} src={'/img/icon.png'} />
+                  <img style={styles.logo} src={'/img/icon.png'} />
                 </NavbarLink>
                 {user && <NavbarLink to='/add-device'>
                   + Add Device
@@ -81,7 +81,6 @@ class Navbar extends Component {
 
 const styles = {
   container: {
-    marginBottom: '100px',
     padding: '10px 20px',
     backgroundColor: '#000000',
     textTransform: 'uppercase',
@@ -97,17 +96,8 @@ const styles = {
     display: 'flex',
     alignItems: 'center',
   },
-  icon: {
+  logo: {
     height: '50px',
-  },
-  title: {
-    fontSize: '16px',
-    //lineHeight: '1.98',
-    letterSpacing: '0.2px',
-    textAlign: 'left',
-    textDecoration: 'none',
-    marginLeft: '15px',
-    color: '#FFFFFF',
   },
   logout: {
     marginLeft: '50px',

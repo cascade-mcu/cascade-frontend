@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { Link as RouterLink } from 'react-router-dom';
 import Radium from 'radium';
-import Typography from 'material-ui/Typography';
 
 const Link = Radium(RouterLink)
 
