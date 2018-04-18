@@ -76,7 +76,7 @@ class Navbar extends Component {
               <AppBar style={styles.appbar}>
                 <Toolbar>
                 <img style = {styles.icon} src={'/img/icon.png'} />
-                {user && <NavbarLink2 to='/add-device'>
+                {user && <NavbarLink2 to='/devices'>
                 <Typography style={styles.Typography}>+ Add Device</Typography>
                   </NavbarLink2>}
                   {user && <NavbarLink2 to='/places'>
