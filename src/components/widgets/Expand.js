@@ -5,7 +5,7 @@ import step from '../../theme/step';
 
 export default (props) => (
   <div style={styles.container}>
-    <Link to='/'>
+    <Link to={props.to}>
       <img alt='Expand' style={styles.img} src={'/img/expand.png'} />
     </Link>
   </div>

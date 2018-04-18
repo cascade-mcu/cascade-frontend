@@ -12,6 +12,16 @@ const GET_DEVICES = gql`
       id
       name
       createdAt
+
+      sensors {
+        sensorType {
+          name
+        }
+
+        logs(last: 1) {
+          value
+        }
+      }
     }
   }
 `;

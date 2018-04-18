@@ -1,15 +1,19 @@
 import React, { Component } from 'react';
+import Radium from 'radium';
+
 import step from '../theme/step';
 
-export default class Container extends Component {
+class Container extends Component {
   render() {
     return (
-      <div style={styles.container}>
+      <div style={[styles.container, this.props.style]}>
         {this.props.children}
       </div>
     );
   }
 }
+
+export default Radium(Container);
 
 const styles = {
   container: {

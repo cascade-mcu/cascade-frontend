@@ -1,10 +1,11 @@
 import React from 'react';
 import FontAwesomeIcon from '@fortawesome/react-fontawesome';
 import faLeaf from '@fortawesome/fontawesome-free-solid/faLeaf';
-import Typography from 'material-ui/Typography';
+import _ from 'lodash';
 
 import Expand from './Expand';
 import Toggle from './Toggle';
+import TinySensor from './TinySensor';
 
 import step from '../../theme/step';
 import colors from '../../theme/colors';
@@ -12,6 +13,7 @@ import colors from '../../theme/colors';
 export default (props) => {
   const {
     device: {
+      id,
       name,
 
       sensors,
@@ -28,10 +30,12 @@ export default (props) => {
       </div>
 
       <div style={styles.content.container}>
-        <div>
-          Sensors
+        <div style={styles.sensors.container}>
+          {_.map(sensors, (sensor) => (
+            <TinySensor key={sensor.id} sensor={sensor} />
+          ))}
         </div>
-        <Expand />
+        <Expand to={`/devices/${id}`} />
       </div>
     </div>
   );
@@ -66,6 +70,12 @@ const styles = {
       justifyContent: 'space-between',
       alignItems: 'stretch',
       minHeight: '200px',
+    },
+  },
+  sensors: {
+    container: {
+      display: 'flex',
+      flexWrap: 'wrap',
     },
   },
 };

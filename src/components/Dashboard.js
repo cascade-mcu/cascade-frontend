@@ -23,11 +23,15 @@ export default (props) => (
   <div>
     <Navbar {...props} />
 
-    <Container>
+    <Container style={styles.container}>
       <DevicesList />
     </Container>
   </div>
 );
 
 const styles = {
+  container: {
+    display: 'flex',
+    justifyContent: 'center',
+  },
 };
