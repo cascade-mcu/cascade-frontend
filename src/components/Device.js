@@ -110,19 +110,15 @@ class Device extends Component {
                                 margin={{ top: 10, right: 0, left: 75, bottom: 0 }}>
                                 <defs>
                                   <linearGradient id="colorUv" x1="0" y1="0" x2="0" y2="1">
-                                    <stop offset="0%" stopColor="#8884d8" stopOpacity={0.8}/>
-                                    <stop offset="95%" stopColor="#008975" stopOpacity={0}/>
-                                  </linearGradient>
-                                  <linearGradient id="colorPv" x1="0" y1="0" x2="0" y2="1">
-                                    <stop offset="0%" stopColor="#82ca9d" stopOpacity={0.8}/>
-                                    <stop offset="95%" stopColor="#82ca9d" stopOpacity={0}/>
+                                    <stop offset="0%" stopColor="#82ca9d" stopOpacity={1}/>
+                                    <stop offset="95%" stopColor="#82ca9d" stopOpacity={0.2}/>
                                   </linearGradient>
                                 </defs>
                                 <XAxis dataKey='readingTime' tickFormatter={(readingTime) => moment(readingTime).format()}/>
                                 <YAxis />
 
                                 <Tooltip />
-                                <Area type="monotone" dataKey='value' stroke="#8884d8" dot={false} fillOpacity={1} fill="url(#colorUv)" />
+                                <Area type="monotone" dataKey='value' stroke="#82ca9d" dot={false} fillOpacity={1} fill="url(#colorUv)" />
                                 <Area type="monotone" dataKey='readingTime' stroke="#8884d8" dot={false} fillOpacity={1} fill="url(#colorUv)" />
                               </AreaChart>
                             </ResponsiveContainer>
