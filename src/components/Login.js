@@ -119,7 +119,6 @@ const styles = {
     backgroundColor: '#292f36',
     fontSize: '50px',
     margin: 'auto',
-    marginTop: '100px',
   },
   section: {
     width: '500px',
@@ -135,10 +134,6 @@ const styles = {
   letterSpacing: '0.25px',
   marginLeft: '75px',
   marginTop: '35px',
-  },
-  icon: {
-    marginLeft: '114px',
-    marginTop: '42px',
   },
   button: {
     width: '150px',

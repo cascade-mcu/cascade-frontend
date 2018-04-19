@@ -110,9 +110,9 @@ export default (props) => (
                               <h4 style={{textAlign:'center'}}>
                                 {name} (sensorId: {id})
                               </h4>
-<ResponsiveContainer width="80%" height={300}>
+<ResponsiveContainer width="90%" height={300}>
 <AreaChart data={logs}
-  margin={{ top: 10, right: 0, left: 200, bottom: 0 }}>
+  margin={{ top: 10, right: 0, left: 75, bottom: 0 }}>
   <defs>
     <linearGradient id="colorUv" x1="0" y1="0" x2="0" y2="1">
       <stop offset="0%" stopColor="#8884d8" stopOpacity={0.8}/>
@@ -178,14 +178,6 @@ const styles = {
                                   );
                                 })}
                               </div>
-----LINECHART------
-                                <LineChart style={{color: '#0288d1'}} width={750} height={375} data={logs}>
-                                <XAxis dataKey='createdAt' tickFormatter={(createdAt) => moment(createdAt).format()}/>
-                                <YAxis/>
-
-                                <Line type='monotone' dataKey='value' stroke='#008975' dot={false} />
-                                <Tooltip/>
-                              </LineChart>
                               */
 
 };

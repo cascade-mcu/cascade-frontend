@@ -17,6 +17,7 @@ import {
   XAxis,
   YAxis,
   Tooltip,
+  ResponsiveContainer,
 } from 'recharts';
 import moment from 'moment';
 
@@ -77,7 +78,7 @@ class Device extends Component {
               return (
                 <div style={styles.container}>
                 <div>
-                  <h1 style={{textAlign:'center', marginTop: '50px'}}>
+                  <h1 style={{textAlign:'center'}}>
                     Device
                   </h1>
 
@@ -104,8 +105,9 @@ class Device extends Component {
                             <h3 style={{textAlign:'center'}}>
                               {name}
                             </h3>
-                            <AreaChart style={{alignItems:'center'}} width={1200} height={300} data={logs}
-  margin={{ top: 10, right: 0, left: 200, bottom: 0 }}>
+                            <ResponsiveContainer width="90%" height={300}>
+<AreaChart data={logs}
+  margin={{ top: 10, right: 0, left: 75, bottom: 0 }}>
   <defs>
     <linearGradient id="colorUv" x1="0" y1="0" x2="0" y2="1">
       <stop offset="0%" stopColor="#8884d8" stopOpacity={0.8}/>
@@ -123,6 +125,7 @@ class Device extends Component {
   <Area type="monotone" dataKey='value' stroke="#8884d8" dot={false} fillOpacity={1} fill="url(#colorUv)" />
   <Area type="monotone" dataKey='value' stroke="#82ca9d" dot={false} fillOpacity={1} fill="url(#colorPv)" />
 </AreaChart>
+</ResponsiveContainer>
                           </div>
                         );
                       })}
