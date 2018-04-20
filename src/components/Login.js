@@ -10,7 +10,6 @@ import {
   TextField,
 } from 'redux-form-material-ui'
 import Button from 'material-ui/Button';
-import Typography from 'material-ui/Typography';
 
 import Navbar from './Navbar';
 import Container from './Container';
@@ -71,12 +70,12 @@ class Login extends Component {
                 <div style={styles.main}>
                   <div style={styles.container}>
                   <div style={styles.section}>
-                  <Typography style={styles.h2}>SIGN IN</Typography>
+                  <h2 style={styles.h2}>SIGN IN</h2>
                   </div>
                        <form onSubmit={handleSubmit((variables) => login({ variables }))}>
-                       <Typography style={styles.title}> Email </Typography>
+                       <h3 style={styles.title}> Email </h3>
                     <Field name='email' style={styles.field} component={TextField} />
-                    <Typography style={styles.title}> Password </Typography>
+                    <h3 style={styles.title}> Password </h3>
                     <Field type='password' style={styles.field} component={TextField} />
                     <Button type='submit' style={styles.button}>
                      Login
@@ -84,8 +83,8 @@ class Login extends Component {
                    <div style={styles.reminder}>
                    <input type='checkbox' style={styles.checkbox}/> Keep me signed in
                    </div>
-                   <Typography style={styles.h3}> Forgot your password?</Typography>
-                   <Typography style={styles.h4}> PROUDLY CREATED BY “MIND IS” CORP.</Typography>
+                   <h4 style={styles.h4}> Forgot your password?</h4>
+                   <h5 style={styles.h5}> PROUDLY CREATED BY “MIND IS” CORP.</h5>
                    <div style={styles.footer}> 
                    <div style={styles.box}> <FontAwesomeIcon style={styles.faPlus} icon={faPlus} />    
                    </div>
@@ -144,9 +143,6 @@ const styles = {
     backgroundColor: '#3a8564',
     color: 'white',
     cursor: 'pointer',
-    //':hover': {
-    // transform: 'scale(0.*5)',
-    // }
   },
   h2: {
     color: '#ffffff',
@@ -158,7 +154,7 @@ const styles = {
     letterSpacing: '0.5px',
     float: 'right',
   },
-  h3: {
+  h4: {
     color: '#ffffff',
     fontSize: '13px',
     fontWeight: '400',
@@ -167,7 +163,7 @@ const styles = {
     marginLeft: '75px',
     marginTop: '15px',
   },
-  h4: {
+  h5: {
     color: '#ffffff',
     fontSize: '13px',
     fontWeight: '400',
@@ -196,7 +192,6 @@ const styles = {
   footer: {
     width: '500px',
     height: '50px',
-    marginTop: '35px',
     backgroundColor: '#fa8e03',
   },
   box: {

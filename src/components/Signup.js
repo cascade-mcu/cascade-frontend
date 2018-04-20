@@ -10,7 +10,6 @@ import {
   TextField,
 } from 'redux-form-material-ui'
 import Button from 'material-ui/Button';
-import Typography from 'material-ui/Typography';
 
 import Navbar from './Navbar';
 import Container from './Container';
@@ -80,21 +79,21 @@ class Signup extends Component {
                 <div style={styles.main}>
                   <div style={styles.container}>
                   <div style={styles.section}>
-                  <Typography style={styles.h2}> SIGN UP</Typography>
+                  <h2 style={styles.h2}>SIGN UP</h2>
                   </div>
                 <form onSubmit={handleSubmit((variables) => signup({ variables }))}>
-                <Typography style={styles.title}> First Name </Typography>
+                <h3 style={styles.title}> First Name </h3>
                   <Field name='firstName' style={styles.field} component={TextField} />
-                  <Typography style={styles.title}> Last Name </Typography>
+                  <h3 style={styles.title}> Last Name </h3>
                   <Field name='lastName' style={styles.field}  component={TextField} />
-                  <Typography style={styles.title}> Email </Typography>
+                  <h3 style={styles.title}> Email </h3>
                   <Field name='email' style={styles.field} component={TextField} />
-                  <Typography style={styles.title}> Password </Typography>
+                  <h3 style={styles.title}> Password </h3>
                   <Field name='password' style={styles.field} type='password' component={TextField} />
                   <Button type='submit' style={styles.button}>
                      Signup
                    </Button>
-                   <Typography style={styles.h4}> PROUDLY CREATED BY “MIND IS” CORP.</Typography>
+                   <h4 style={styles.h4}> PROUDLY CREATED BY “MIND IS” CORP.</h4>
                    <div style={styles.footer}> 
                    <div style={styles.box}> <FontAwesomeIcon style={styles.faPlus} icon={faPlus} /> </div> 
                    <Link style={styles.logLink} to="/Login">Already have an account?</Link>       
@@ -110,7 +109,6 @@ class Signup extends Component {
           </Mutation>
         </Container>
       </div>
-      
     );
   }
 }
@@ -122,13 +120,13 @@ const styles = {
     marginBottom: '50px',
 },
 container: {
-  width: '500px',
-    height: '650px',
+    width: '500px',
+    height: '700px',
     fontSize: '50px',
     backgroundColor: '#292f36',
     fontSize: '50px',
     margin: 'auto',
-    marginTop: '100px',
+    
 },
 section: {
   width: '500px',
@@ -158,9 +156,6 @@ button: {
   backgroundColor: '#3a8564',
   color: 'white',
   cursor: 'pointer',
-  //':hover': {
-  // transform: 'scale(0.*5)',
-  // }
 },
 h2: {
   color: '#ffffff',
@@ -176,7 +171,6 @@ h3: {
   color: '#ffffff',
   fontSize: '13px',
   fontWeight: '400',
-  // lineHeight: '100px',
   textTransform: 'uppercase',
   letterSpacing: '0.13px',
   marginLeft: '75px',
@@ -186,11 +180,9 @@ h4: {
   color: '#ffffff',
   fontSize: '13px',
   fontWeight: '400',
-  // lineHeight: '100px',
   textTransform: 'uppercase',
   letterSpacing: '0.13px',
   marginLeft: '75px',
-  marginTop: '20px',
 },
 field: {
   width: '350px',
@@ -201,7 +193,6 @@ field: {
 footer: {
   width: '500px',
   height: '50px',
-  marginTop: '35px',
   backgroundColor: '#fa8e03',
 },
 logLink: {
@@ -210,7 +201,6 @@ fontSize: '28px',
 letterSpacing: '0.5px',
 textDecoration: 'none',
 textTransform: 'uppercase',
-marginTop: '15px',
 },
 box: {
   width: '75px',
@@ -226,35 +216,6 @@ faPlus: {
   marginBottom: '2px',
 },
 }
-
-
-
-  
-  
-  
-  
-  
-  
-  
-  
- 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 export default compose(
   reduxForm({

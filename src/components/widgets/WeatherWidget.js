@@ -7,7 +7,7 @@ import Toggle from './Toggle';
 
 export default (props) => (
   <div style={styles.container}>
-    <div style={styles.info}>
+    <div style={{width: '550px', height: '50px', backgroundColor: '#0288d1', display: 'flex-wrap'}}>
       <FontAwesomeIcon style={styles.faCloud} icon={faCloud} />
 
       <Toggle />
@@ -24,12 +24,6 @@ const styles = {
     backgroundColor: '#292f36',
     marginTop: '75px',
     display: 'inline-block',
-  },
-  info: {
-    width: '550px',
-    height: '50px',
-    backgroundColor: '#0288d1',
-    display: 'flex-wrap',
   },
   faCloud: {
     fontSize: '35px',

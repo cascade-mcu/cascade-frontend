@@ -1,8 +1,5 @@
 import React, { Component } from 'react';
 import _ from 'lodash';
-import AppBar from 'material-ui/AppBar';
-import Toolbar from 'material-ui/Toolbar';
-import Typography from 'material-ui/Typography';
 import Button from 'material-ui/Button';
 import { Link as RouterLink } from 'react-router-dom';
 import gql from 'graphql-tag';
@@ -11,7 +8,6 @@ import { client } from '../index';
 import Radium from 'radium';
 import color from 'color';
 import PropTypes from 'prop-types';
-import { withStyles } from 'material-ui/styles';
 import FontAwesomeIcon from '@fortawesome/react-fontawesome';
 import faBars from '@fortawesome/fontawesome-free-solid/faBars';
 
@@ -47,7 +43,7 @@ class Navbar extends Component {
             <div style={styles.container}>
               <div style={styles.leftContainer}>
                 <NavbarLink to='/'>
-                  <img style={styles.logo} src={'/img/icon.png'} />
+                  <img style={{height: '50px'}} src={'/img/icon.png'} />
                 </NavbarLink>
                 {user && <NavbarLink to='/add-device'>
                   + Add Device
@@ -95,16 +91,6 @@ const styles = {
   rightContainer: {
     display: 'flex',
     alignItems: 'center',
-  },
-  logo: {
-    height: '50px',
-  },
-  logout: {
-    marginLeft: '50px',
-    fontSize: '16px',
-    letterSpacing: '1px',
-    textDecoration: 'none',
-    color: '#FFFFFF',
   },
   market: {
     width: '120px',

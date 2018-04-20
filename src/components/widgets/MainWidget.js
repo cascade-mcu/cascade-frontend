@@ -1,14 +1,13 @@
 import React from 'react';
 import FontAwesomeIcon from '@fortawesome/react-fontawesome';
 import faLeaf from '@fortawesome/fontawesome-free-solid/faLeaf';
-import Typography from 'material-ui/Typography';
 
 import Expand from './Expand';
 import Toggle from './Toggle';
 
 export default (props) => (
   <div style={styles.container}>
-    <div style={styles.mainInfo}>
+    <div style={{width: '550px', height: '50px', backgroundColor: '#008975', display: 'flex-wrap', position: 'relative'}}>
       <FontAwesomeIcon style={styles.faLeaf} icon={faLeaf} />
       <Toggle />
     </div>
@@ -17,33 +16,32 @@ export default (props) => (
 
     <div style={styles.boxContainer}>
       <div style={styles.box}>
-        <img style = {styles.icons} src={'/img/sm-temp.png'} />
-        <Typography style={styles.text}>
+        <img style = {{marginTop: '5px'}} src={'/img/sm-temp.png'} />
+        <h3 style={{color: '#FFFFFF', fontSize: '12px'}}>
           Temperature
-        </Typography>
+        </h3>
       </div>
-      <div style={styles.box2}>
-        <img style={styles.icons} src={'/img/sm-light.png'} />
-        <Typography style={styles.text}>
+      <div style={{backgroundColor: '#39414b', width: '50%'}}>
+        <img style={{marginTop: '5px'}} src={'/img/sm-light.png'} />
+        <h3 style={{color: '#FFFFFF', fontSize: '12px'}}>
           Light
-        </Typography>
+        </h3>
       </div>
       <div style={styles.box2}>
-        <img style={styles.icons} src={'/img/sm-humidity.png'} />
-        <Typography style={styles.text}>
+        <img style={{marginTop: '5px'}} src={'/img/sm-humidity.png'} />
+        <h3 style={{color: '#FFFFFF', fontSize: '12px'}}>
           Humidity
-        </Typography>
+        </h3>
       </div>
       <div style={styles.box}>
-        <img style={styles.icons} src={'/img/sm-pressure.png'} />
-        <Typography style={styles.text}>
+        <img style={{marginTop: '5px'}} src={'/img/sm-pressure.png'} />
+        <h3 style={{color: '#FFFFFF', fontSize: '12px'}}>
           Pressure
-        </Typography>
+        </h3>
       </div>
     </div>
   </div>
 );
-//<img style = {styles.mainLayer} src={'/img/widget.png'} />
 
 const styles = {
   container: {
@@ -52,21 +50,6 @@ const styles = {
     width: '550px',
     height: '270px',
     backgroundColor: '#292f36',
-  },
-  mainInfo: {
-    width: '550px',
-    height: '50px',
-    backgroundColor: '#008975',
-    display: 'flex-wrap',
-    position: 'relative',
-  },
-  mainLayer: {
-    position: 'absolute',
-    height: '225px',
-    width: '275px',
-    zIndex: '1',
-    left: '750px',
-    top: '225px',
   },
   boxContainer: {
     height: '220px',
@@ -81,17 +64,6 @@ const styles = {
     backgroundColor: '#333a43',
     width: '50%',
     display: 'inline-block',
-  },
-  box2: {
-    backgroundColor: '#39414b',
-    width: '50%',
-  },
-  icons: {
-    marginTop: '5px',
-  },
-  text: {
-    color: '#FFFFFF',
-    fontSize: '12px',
   },
   faLeaf: {
     fontSize: '35px',

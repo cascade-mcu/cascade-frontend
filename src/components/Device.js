@@ -12,8 +12,6 @@ import {
   AreaChart,
   CartesianGrid,
   Area,
-  LineChart,
-  Line,
   XAxis,
   YAxis,
   Tooltip,

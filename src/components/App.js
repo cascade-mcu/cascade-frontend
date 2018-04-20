@@ -1,6 +1,5 @@
 import React from 'react';
 import Button from 'material-ui/Button';
-import Switch from 'material-ui/Switch';
 
 import Dashboard from './Dashboard';
 import ChooseDeviceModel from './ChooseDeviceModel';
