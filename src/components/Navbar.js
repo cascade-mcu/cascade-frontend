@@ -42,7 +42,7 @@ class Navbar extends Component {
           return (
             <div style={styles.container}>
               <div style={styles.leftContainer}>
-                <NavbarLink to='/'>
+                <NavbarLink to='/dashboard'>
                   <img style={{height: '50px'}} src={'/img/icon.png'} />
                 </NavbarLink>
                 {user && <NavbarLink to='/add-device'>

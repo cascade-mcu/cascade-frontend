@@ -44,13 +44,13 @@ export default (props) => (
           return (
             <div style={styles.container}>
               <div style={styles.centeredContainer}>
-                <div>
+                <div style={styles.text}>
                   Locations
                 </div>
 
                 {_.map(locations, (location) => {
                   return (
-                    <Button component={Link} to={`/locations/${location.id}`} key={location.id} variant='raised' fullWidth>
+                    <Button style={styles.button} component={Link} to={`/locations/${location.id}`} key={location.id} variant='raised' fullWidth>
                       {location.name}
                     </Button>
                   );
@@ -66,8 +66,6 @@ export default (props) => (
 
 const styles = {
   container: {
-    backgroundColor: colors.lightGrey,
-    minHeight: '500px',
     padding: step(),
     display: 'flex',
     alignItems: 'center',
@@ -75,5 +73,24 @@ const styles = {
   },
   centeredContainer: {
     textAlign: 'center',
+  },
+  text: {
+    textAlign: 'center', 
+    color: '#FFFFFF', 
+    fontSize: '16px', 
+    letterSpacing: '1px', 
+    marginBottom: '20px'
+  },
+  button: {
+    width: '100%',
+    height: '50px',
+    backgroundColor: '#000000',
+    color: '#008975',
+    fontSize: '22px',
+    letterSpacing: '2px',
+    borderRadius: '5px',
+    border: '2px solid #008975',
+    alignItems: 'center',
+    justifyContent: 'center',
   },
 };

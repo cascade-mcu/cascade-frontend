@@ -147,7 +147,7 @@ export default class ChooseDevice extends Component {
     return (
       <div>
         <Navbar {...this.props} />
-        <Container>
+        <Container style={styles.container}>
           <Query query={GET_DEVICES} variables={{ deviceModelId, networkDeviceIds: this.networkDeviceIds() }}>
             {({ loading, error, data }) => {
               if (loading) return <Loader />;
@@ -185,7 +185,7 @@ export default class ChooseDevice extends Component {
                           this.handleSuccess(data);
 
                           return (
-                            <Button onClick={() => addDeviceToUser({ variables })} variant='raised' fullWidth>
+                            <Button style={styles.button} onClick={() => addDeviceToUser({ variables })} variant='raised' fullWidth>
                               {name || `cascade-{deviceId}`}
                             </Button>
                           );
@@ -202,3 +202,25 @@ export default class ChooseDevice extends Component {
     )
   }
 }
+
+const styles = {
+  container: {
+      alignItems: 'center',
+      justifyContent: 'center',
+    },
+    centeredContainer: {
+      textAlign: 'center',
+    },
+  button: {
+    width: '100%',
+    height: '50px',
+    backgroundColor: '#000000',
+    color: '#008975',
+    fontSize: '22px',
+    letterSpacing: '2px',
+    borderRadius: '5px',
+    border: '2px solid #008975',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+};

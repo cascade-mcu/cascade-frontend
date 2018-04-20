@@ -61,7 +61,7 @@ class SetupSuccess extends Component {
     return (
       <div>
         <Navbar {...this.props} />
-        <Container>
+        <Container style={styles.container}>
           <Query query={GET_DEVICE} variables={{ deviceId }}>
             {({ loading, error, data }) => {
               if (loading) return <Loader />;
@@ -74,13 +74,13 @@ class SetupSuccess extends Component {
               } = data;
 
               return (
-                <div>
+                <div style={styles.text}>
                   Success!
-                  <div>
+                  <div style={styles.text}>
                     You now own this device {id}
                   </div>
 
-                  <div>
+                  <div style={styles.text}>
                     Give the name to the device:
 
                     <Mutation mutation={RENAME_DEVICE}>
@@ -95,7 +95,7 @@ class SetupSuccess extends Component {
                             }
                           }))}>
                             <Field name='name' component={TextField} placeholder='Name' />
-                            <Button type='submit'>
+                            <Button style={styles.button} type='submit'>
                               Next
                             </Button>
 
@@ -116,6 +116,35 @@ class SetupSuccess extends Component {
     );
   }
 }
+
+const styles = {
+  container: {
+      alignItems: 'center',
+      justifyContent: 'center',
+    },
+    centeredContainer: {
+      textAlign: 'center',
+    },
+    text: {
+      textAlign: 'center', 
+      color: '#FFFFFF', 
+      fontSize: '16px', 
+      letterSpacing: '1px', 
+      marginBottom: '20px'
+    },
+    button: {
+    width: '100%',
+    height: '50px',
+    backgroundColor: '#000000',
+    color: '#008975',
+    fontSize: '22px',
+    letterSpacing: '2px',
+    borderRadius: '5px',
+    border: '2px solid #008975',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+};
 
 export default compose(
   reduxForm({
