@@ -17,6 +17,6 @@ export default Radium(Container);
 
 const styles = {
   container: {
-    padding: step(),
+    padding: `${step()} ${step(0.5)}`,
   },
 }

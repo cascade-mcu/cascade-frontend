@@ -43,7 +43,7 @@ export default (props) => {
 
 const styles = {
   container: {
-    width: '550px',
+    maxWidth: '550px',
     backgroundColor: '#292f36',
     marginBottom: step(2),
   },
