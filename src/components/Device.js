@@ -7,7 +7,7 @@ import { Query } from 'react-apollo';
 import Navbar from './Navbar';
 import Container from './Container';
 import Loader from './Loader';
-import SensorChart from './SensorChart';
+import SensorInfo from './SensorInfo';
 
 import step from '../theme/step';
 
@@ -68,8 +68,13 @@ class Device extends Component {
               return (
                 <div>
                 <div>
-                  <div style={styles.heading}>
-                    {name} ({id})
+                  <div style={styles.meta.container}>
+                    <div style={styles.meta.heading}>
+                      {name}
+                    </div>
+                    <div style={styles.meta.id}>
+                      ({id})
+                    </div>
                   </div>
 
                   <div>
@@ -82,7 +87,7 @@ class Device extends Component {
                       } = sensor;
 
                       return (
-                        <SensorChart key={sensor.id} sensor={sensor} />
+                        <SensorInfo key={sensor.id} sensor={sensor} />
                       );
                     })}
                   </div>
@@ -105,9 +110,16 @@ const styles = {
     color: '#FFFFFF',
     padding: step(2),
   },
-  heading: {
-    padding: `0 0 ${step(3)} ${step(3)}`,
-    fontSize: '28px',
-    fontWeight: 500,
+  meta: {
+    container: {
+      padding: `0 0 ${step(3)} ${step(3)}`,
+    },
+    heading: {
+      fontSize: '28px',
+      fontWeight: 500,
+    },
+    id: {
+      fontSize: '14px',
+    },
   },
 };

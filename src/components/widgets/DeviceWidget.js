@@ -50,7 +50,7 @@ const styles = {
   header: {
     container: {
       height: '50px',
-      backgroundColor: '#008975',
+      backgroundColor: colors.green,
       display: 'flex',
       color: colors.white,
       alignItems: 'center',
