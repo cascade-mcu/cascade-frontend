@@ -1,6 +1,7 @@
 import React from 'react';
 
 import SensorChart from './SensorChart';
+import ExportButton from './ExportButton';
 import step from '../theme/step';
 import colors from '../theme/colors';
 
@@ -17,9 +18,7 @@ export default ({
       <div style={styles.header.heading}>
         {name}
       </div>
-      <div style={styles.header.exportButton}>
-        Export
-      </div>
+      <ExportButton sensor={sensor} />
     </div>
 
     <SensorChart sensor={sensor} />
@@ -28,7 +27,7 @@ export default ({
 
 const styles = {
   container: {
-    paddingBottom: step(3),
+    paddingBottom: step(5),
   },
   header: {
     container: {
@@ -41,14 +40,6 @@ const styles = {
       padding: `0 0 ${step(0.5)} ${step(3.1)}`,
       fontSize: '24px',
       fontWeight: 500,
-    },
-    exportButton: {
-      color: colors.white,
-      backgroundColor: '#84C99E',
-      padding: `${step(0.5)} ${step(0.7)}`,
-      textDecoration: 'uppercase',
-      fontSize: '12px',
-      cursor: 'pointer',
     },
   },
 };
