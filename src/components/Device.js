@@ -9,6 +9,8 @@ import Container from './Container';
 import Loader from './Loader';
 import SensorChart from './SensorChart';
 
+import step from '../theme/step';
+
 const GET_DEVICE = gql`
   query device($deviceId: ID!) {
     device(where: {
@@ -25,7 +27,7 @@ const GET_DEVICE = gql`
           name
         }
 
-        logs {
+        logs(last: 50) {
           id
           value
           readingTime
@@ -66,33 +68,23 @@ class Device extends Component {
               return (
                 <div>
                 <div>
-                  <h1 style={{textAlign:'center'}}>
-                    Device
-                  </h1>
-
-                  <div style={{textAlign:'center'}}>
+                  <div style={styles.heading}>
                     {name} ({id})
                   </div>
 
                   <div>
-                    <h2 style={{textAlign:'center'}}>
-                      Sensors:
-                    </h2>
+                    {_.map(sensors, (sensor) => {
+                      const {
+                        sensorType: {
+                          name,
+                        },
+                        logs,
+                      } = sensor;
 
-                    <div>
-                      {_.map(sensors, (sensor) => {
-                        const {
-                          sensorType: {
-                            name,
-                          },
-                          logs,
-                        } = sensor;
-
-                        return (
-                          <SensorChart key={sensor.id} sensor={sensor} />
-                        );
-                      })}
-                    </div>
+                      return (
+                        <SensorChart key={sensor.id} sensor={sensor} />
+                      );
+                    })}
                   </div>
                 </div>
                 </div>
@@ -110,9 +102,12 @@ export default compose(
 
 const styles = {
   container: {
-    backgroundColor: '#292f36',
-    minHeight: '600px',
     color: '#FFFFFF',
-    letterSpacing: '1.5px',
+    padding: step(2),
+  },
+  heading: {
+    padding: `0 0 ${step(3)} ${step(3)}`,
+    fontSize: '28px',
+    fontWeight: 500,
   },
 };

@@ -12,6 +12,7 @@
     "apollo-client-preset": "^1.0.8",
     "apollo-link-batch-http": "^1.2.1",
     "apollo-link-context": "^1.0.7",
+    "d3": "^5.1.0",
     "graphql": "^0.13.2",
     "graphql-tag": "^2.8.0",
     "history": "^4.7.2",
