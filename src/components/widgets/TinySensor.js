@@ -1,6 +1,8 @@
 import React from 'react';
 import _ from 'lodash';
 
+import Icon from '../Icon';
+
 import colors from '../../theme/colors';
 import step from '../../theme/step';
 
@@ -18,6 +20,9 @@ export default (props) => {
 
   return (
     <div style={styles.container}>
+      <div style={styles.icon}>
+        <Icon type={_.camelCase(name)} />
+      </div>
       <div style={styles.header}>
         {name}
       </div>
