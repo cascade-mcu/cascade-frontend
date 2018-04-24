@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import gql from 'graphql-tag';
 import _ from 'lodash';
+import $ from 'jquery';
+import moment from 'moment';
+import CSV from 'comma-separated-values';
 
 import { client } from '../index';
 import step from '../theme/step';
@@ -9,7 +12,7 @@ import colors from '../theme/colors';
 const GET_LOGS = gql`
   query getLogs($skip: Int!, $sensorId: ID!) {
     logs(
-      first: 100
+      first: 500
       skip: $skip
       where: {
         sensor: {
@@ -18,6 +21,8 @@ const GET_LOGS = gql`
       }
     ) {
       id
+      value
+      readingTime
     }
   }
 `;
@@ -33,15 +38,29 @@ export default class ExportButton extends Component {
     };
   }
 
+  triggerCsvDownload(string, filename) {
+    const anchor = $('<a></a>');
+    $('body').append(anchor);
+
+    anchor.attr({
+      href: 'data:attachment/csv;charset=utf-8,' + encodeURI(string),
+      target: '_self',
+      download: filename + '.csv',
+    });
+
+    anchor[0].click();
+    anchor.remove();
+  }
+
   async getAll() {
     const batchResult = await this.getBatch();
-    if (_.isEmpty(batchResult.data, 'logs')) return;
+    if (!_.get(batchResult, 'data.logs.length')) return Promise.resolve();
 
     this.setState((state) => ({
       logs: _.cloneDeep(state.logs).concat(batchResult.data.logs),
     }));
 
-    return await this.getAll();
+    return this.getAll();
   }
 
   async getBatch() {
@@ -63,22 +82,59 @@ export default class ExportButton extends Component {
 
     await this.getAll();
 
-    console.log('awaited');
-    console.log(this.state.logs)
     this.setState({
       loading: false,
       success: true,
     });
   }
 
+  csvString() {
+    const {
+      logs,
+    } = this.state;
+
+    const HEADERS = [
+      'id',
+      'value',
+      'readingTime',
+    ];
+
+    const result = _.map(logs, (log) => {
+      return _.map(HEADERS, (header) => {
+        return log[header];
+      });
+    });
+
+    return new CSV(result, { header: HEADERS }).encode();
+  }
+
+  downloadCsv() {
+    const {
+      sensor: {
+        sensorType: {
+          name,
+        },
+      },
+    } = this.props;
+
+    this.triggerCsvDownload(this.csvString(), _.kebabCase(`cascade-${name}-${moment().format()}`));
+  }
+
+  handleClick() {
+    if (this.state.success) return this.downloadCsv();
+
+    return this.handleStart();
+  }
+
   text() {
     const {
       loading,
       success,
+      logs,
     } = this.state;
 
     if (success) return 'Export complete! Click to download.';
-    if (loading) return 'Exporting';
+    if (loading) return `Exporting ${logs.length}/∞`;
 
     return 'Export';
   }
@@ -87,7 +143,7 @@ export default class ExportButton extends Component {
     return (
       <div
         style={styles.container}
-        onClick={() => this.handleStart()}
+        onClick={() => this.handleClick()}
       >
         {this.text()}
       </div>
