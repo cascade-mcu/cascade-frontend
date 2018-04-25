@@ -1,6 +1,11 @@
 import React from 'react';
 import Button from 'material-ui/Button';
 
+import {
+  Redirect,
+  Switch,
+} from 'react-router-dom';
+
 import Dashboard from './Dashboard';
 import ChooseDeviceModel from './ChooseDeviceModel';
 import InstallDevice from './InstallDevice';
@@ -19,18 +24,22 @@ import Devices from './Devices';
 
 export default () => (
   <div>
-    <UnauthedRoute path='/signup' exact component={Signup} />
-    <UnauthedRoute path='/login' exact component={Login} />
-    <AuthedRoute path='/dashboard' exact component={Dashboard} />
-    <AuthedRoute path='/locations' exact component={Locations} />
-    <AuthedRoute path='/locations/:locationId' exact component={Places} />
-    <AuthedRoute path='/scenes' exact component={Scenes} />
-    <AuthedRoute path='/scenes/:sceneId' exact component={Scene} />
-    <AuthedRoute path='/add-device' exact component={ChooseDeviceModel} />
-    <AuthedRoute path='/install-device/:deviceModelId' exact component={InstallDevice} />
-    <AuthedRoute path='/choose-device/:deviceModelId' exact component={ChooseDevice} />
-    <AuthedRoute path='/setup-success/:deviceId' exact component={SetupSuccess} />
-    <AuthedRoute path='/devices/:deviceId' exact component={Device} />
-    <AuthedRoute path='/devices' exact component={Devices} />
+    <Switch>
+      <UnauthedRoute path='/signup' exact component={Signup} />
+      <UnauthedRoute path='/login' exact component={Login} />
+      <AuthedRoute path='/dashboard' exact component={Dashboard} />
+      <AuthedRoute path='/locations' exact component={Locations} />
+      <AuthedRoute path='/locations/:locationId' exact component={Places} />
+      <AuthedRoute path='/scenes' exact component={Scenes} />
+      <AuthedRoute path='/scenes/:sceneId' exact component={Scene} />
+      <AuthedRoute path='/add-device' exact component={ChooseDeviceModel} />
+      <AuthedRoute path='/install-device/:deviceModelId' exact component={InstallDevice} />
+      <AuthedRoute path='/choose-device/:deviceModelId' exact component={ChooseDevice} />
+      <AuthedRoute path='/setup-success/:deviceId' exact component={SetupSuccess} />
+      <AuthedRoute path='/devices/:deviceId' exact component={Device} />
+      <AuthedRoute path='/devices' exact component={Devices} />
+
+      <Redirect from='/' to='dashboard' />
+    </Switch>
   </div>
 );

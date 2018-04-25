@@ -4,7 +4,7 @@ import Radium from 'radium';
 
 const Link = Radium(RouterLink)
 
-export default class NavbarLink extends Component {
+class NavbarLink extends Component {
   constructor(props) {
     super(props)
 
@@ -26,18 +26,22 @@ export default class NavbarLink extends Component {
   }
 
   render() {
+    const TagName = this.props.component || Link;
+
     return (
-      <Link
+      <TagName
         {...this.props}
         style={[styles.container, this.state.hover && styles.hover.container]}
         onMouseEnter={() => this.handleMouseEnter()}
         onMouseLeave={() => this.handleMouseLeave()}
       >
         {this.props.children}
-      </Link>
+      </TagName>
     )
   }
 }
+
+export default Radium(NavbarLink);
 
 const styles = {
   container: {
@@ -46,7 +50,8 @@ const styles = {
     textDecoration: 'none',
     color: '#FFFFFF',
     marginRight: '20px',
-    borderBottom: '1px solid #171a1f'
+    borderBottom: '1px solid #171a1f',
+    cursor: 'pointer',
   },
   hover: {
     container: {

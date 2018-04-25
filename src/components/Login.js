@@ -16,6 +16,7 @@ import Container from './Container';
 import FontAwesomeIcon from '@fortawesome/react-fontawesome';
 import faPlus from '@fortawesome/fontawesome-free-solid/faPlus';
 
+import step from '../theme/step';
 
 const LOGIN = gql`
   mutation login($email: String!, $password: String!) {
@@ -60,43 +61,37 @@ class Login extends Component {
     return (
       <div>
         <Navbar {...this.props} />
+
         <Container>
-          
+
           <Mutation mutation={LOGIN}>
             {(login, { data, error }) => {
               this.token(data) && this.handleSuccess(this.token(data));
 
               return (
-                <div style={styles.main}>
-                  <div style={styles.container}>
+                <div style={styles.container}>
                   <div style={styles.section}>
-                  <h2 style={styles.h2}>SIGN IN</h2>
+                    <h2 style={styles.h2}>
+                      Login
+                    </h2>
                   </div>
-                       <form onSubmit={handleSubmit((variables) => login({ variables }))}>
-                       <h3 style={styles.title}> Email </h3>
+                  <form onSubmit={handleSubmit((variables) => login({ variables }))} style={styles.form.container}>
+                    <label style={styles.label}>
+                      Email
+                    </label>
                     <Field name='email' style={styles.field} component={TextField} />
-                    <h3 style={styles.title}> Password </h3>
+                    <label style={styles.label}>
+                      Password
+                    </label>
                     <Field type='password' style={styles.field} component={TextField} />
                     <Button type='submit' style={styles.button}>
-                     Login
-                   </Button>
-                   <div style={styles.reminder}>
-                   <input type='checkbox' style={styles.checkbox}/> Keep me signed in
-                   </div>
-                   <h4 style={styles.h4}> Forgot your password?</h4>
-                   <h5 style={styles.h5}> PROUDLY CREATED BY “MIND IS” CORP.</h5>
-                   <div style={styles.footer}> 
-                   <div style={styles.box}> <FontAwesomeIcon style={styles.faPlus} icon={faPlus} />    
-                   </div>
-                   <Link style={styles.regLink} to="/Signup"> Join us </Link>  
-                   </div>
-                  <div>
-                    {error && _.get(error, 'graphQLErrors[0].message')}
-                  </div>
-                </form>
+                      Login
+                    </Button>
+                    <div>
+                      {error && _.get(error, 'graphQLErrors[0].message')}
+                    </div>
+                  </form>
                 </div>
-                </div>
-                
               );
             }}
           </Mutation>
@@ -107,32 +102,28 @@ class Login extends Component {
 }
 
 const styles = {
-  main: {
-    width: '50%',
-    margin: 'auto',
-  },
   container: {
-    width: '500px',
-    height: '500px',
+    width: '100%',
+    maxWidth: '400px',
+    height: '400px',
     fontSize: '50px',
     backgroundColor: '#292f36',
     fontSize: '50px',
     margin: 'auto',
   },
   section: {
-    width: '500px',
+    // width: '500px',
     height: '80px',
     backgroundColor: '#1b1f24',
   },
-  title: {
-  color: 'white',
-  fontSize: '20px',
-  fontWeight: '400',
-  lineHeight: '10px',
-  textTransform: 'uppercase',
-  letterSpacing: '0.25px',
-  marginLeft: '75px',
-  marginTop: '35px',
+  label: {
+    color: 'white',
+    fontSize: '20px',
+    fontWeight: '400',
+    lineHeight: '10px',
+    textTransform: 'uppercase',
+    letterSpacing: '0.25px',
+    marginTop: '35px',
   },
   button: {
     width: '150px',
@@ -173,10 +164,9 @@ const styles = {
     marginTop: '15px',
   },
   field: {
-    width: '350px',
+    width: '100%',
     height: '30px',
     backgroundColor: '#3f4854',
-    marginLeft: '75px',
   },
   checkbox: {
     borderRadius: '5px',
@@ -201,12 +191,12 @@ const styles = {
     display: 'inline-block',
   },
   regLink: {
-  color: '#ffffff',
-  fontSize: '28px',
-  letterSpacing: '0.5px',
-  textDecoration: 'none',
-  textTransform: 'uppercase',
-  marginTop: '15px',
+    color: '#ffffff',
+    fontSize: '28px',
+    letterSpacing: '0.5px',
+    textDecoration: 'none',
+    textTransform: 'uppercase',
+    marginTop: '15px',
   },
   faPlus: {
     fontSize: '50px',
@@ -214,7 +204,13 @@ const styles = {
     marginLeft: '15px',
     marginBottom: '2px',
   },
-}
+  form: {
+    container: {
+      padding: step(),
+    },
+  },
+};
+
 export default compose(
   reduxForm({
     form: 'login',

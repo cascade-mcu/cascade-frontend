@@ -50,10 +50,12 @@ class Navbar extends Component {
                 </NavbarLink>}
               </div>
               <div style={styles.rightContainer}>
-                {user && <Button onClick={() => this.logout()}>
-                  {user.firstName}
-                  <FontAwesomeIcon style={styles.faBars} icon={faBars} />
-                </Button>}
+                {user && <NavbarLink component='div' onClick={() => this.logout()}>
+                  Logout
+                </NavbarLink>}
+                {!user && <NavbarLink to='/login'>
+                  Login
+                </NavbarLink>}
               </div>
             </div>
           );
