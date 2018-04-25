@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import FontAwesomeIcon from '@fortawesome/react-fontawesome';
 import faLeaf from '@fortawesome/fontawesome-free-solid/faLeaf';
 import _ from 'lodash';
@@ -14,44 +14,69 @@ import colors from '../../theme/colors';
 
 const Link = Radium(RouterLink);
 
-export default (props) => {
-  const {
-    device: {
-      id,
-      name,
+export default class DeviceWidget extends Component {
+  constructor(props) {
+    super(props);
 
-      sensors,
-    },
-  } = props;
+    this.state = {
+      debug: false,
+    };
+  }
 
-  return (
-    <div style={styles.container}>
-      <div style={styles.header.container}>
-        <div style={styles.header.left}>
-          <FontAwesomeIcon style={styles.header.icon} icon={faLeaf} />
-          <div style={styles.header.text}>
-            {name}
+  handleToggle() {
+    this.setState((state) => ({
+      debug: !state.debug,
+    }));
+  }
+
+  render() {
+    const {
+      device: {
+        id,
+        name,
+
+        sensors,
+      },
+    } = this.props;
+
+    const {
+      debug,
+    } = this.state;
+
+    return (
+      <div style={styles.container}>
+        <div style={styles.header.container}>
+          <div style={styles.header.left}>
+            <FontAwesomeIcon style={styles.header.icon} icon={faLeaf} />
+            <div style={styles.header.text}>
+              {name}
+            </div>
+          </div>
+          <div>
+            <div onClick={() => this.handleToggle()} style={styles.header.button}>
+              {debug ? 'Sensors' : 'Debug'}
+            </div>
+            <Link to={`/devices/${id}`} style={styles.header.button}>
+              Charts
+            </Link>
           </div>
         </div>
-        <div>
-          <Link to={`/devices/${id}`} style={styles.header.button}>
-            Debug
-          </Link>
-          <Link to={`/devices/${id}`} style={styles.header.button}>
-            Charts
-          </Link>
-        </div>
-      </div>
 
-      <div style={styles.content.container}>
-        <div style={styles.sensors.container}>
-          {_.map(sensors, (sensor) => (
-            <TinySensor key={sensor.id} sensor={sensor} />
-          ))}
+        <div style={styles.content.container}>
+          {debug && <div style={styles.debug.container}>
+            <div>
+              Wifi: ...
+            </div>
+          </div>}
+          {!debug && <div style={styles.sensors.container}>
+            {_.map(sensors, (sensor) => (
+              <TinySensor key={sensor.id} sensor={sensor} />
+            ))}
+          </div>}
         </div>
       </div>
-    </div>
-  );
+    );
+  }
 };
 
 const styles = {
@@ -79,6 +104,8 @@ const styles = {
       padding: `${step(0.5)} ${step()}`,
       fontSize: '12px',
       marginLeft: step(0.5),
+      display: 'inline-block',
+      cursor: 'pointer',
 
       ':hover': {
         backgroundColor: colors.hoverVeryLightGrey,
@@ -108,6 +135,12 @@ const styles = {
     container: {
       display: 'flex',
       flexWrap: 'wrap',
+    },
+  },
+  debug: {
+    container: {
+      padding: step(),
+      color: colors.white,
     },
   },
 };
