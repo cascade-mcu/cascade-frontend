@@ -33,9 +33,14 @@ export default (props) => {
             {name}
           </div>
         </div>
-        <Link to={`/devices/${id}`} style={styles.header.button}>
-          Charts
-        </Link>
+        <div>
+          <Link to={`/devices/${id}`} style={styles.header.button}>
+            Debug
+          </Link>
+          <Link to={`/devices/${id}`} style={styles.header.button}>
+            Charts
+          </Link>
+        </div>
       </div>
 
       <div style={styles.content.container}>
@@ -73,6 +78,7 @@ const styles = {
       textTransform: 'uppercase',
       padding: `${step(0.5)} ${step()}`,
       fontSize: '12px',
+      marginLeft: step(0.5),
 
       ':hover': {
         backgroundColor: colors.hoverVeryLightGrey,
