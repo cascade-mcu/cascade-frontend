@@ -81,7 +81,7 @@ export default class DeviceWidget extends Component {
 
 const styles = {
   container: {
-    width: '100%',
+    width: `calc(100vw - ${step(2)})`,
     maxWidth: step(5 * 4 + 2 * 4),
     backgroundColor: '#292f36',
     margin: step(),
