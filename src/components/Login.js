@@ -94,13 +94,13 @@ class Login extends Component {
                   <form onSubmit={handleSubmit((variables) => login({ variables }))} style={styles.form.container}>
                     <Field name='email' style={styles.field} component={renderField} type='text' placeholder='Email' />
                     <Field name='password' style={styles.field} component={renderField} type='password' placeholder='Password' />
+                    <div style={styles.form.error}>
+                      {error && _.get(error, 'graphQLErrors[0].message')}
+                    </div>
                     <div style={styles.form.button.container}>
                       <button type='submit' style={styles.button}>
                         Login
                       </button>
-                    </div>
-                    <div>
-                      {error && _.get(error, 'graphQLErrors[0].message')}
                     </div>
                   </form>
                 </div>
