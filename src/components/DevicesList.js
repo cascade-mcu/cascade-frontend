@@ -36,7 +36,7 @@ export default (props) => (
       } = data;
 
       return (
-        <div>
+        <div style={styles.container}>
           {_.map(devices, (device) => (
             <DeviceWidget key={device.id} device={device} />
           ))}
@@ -45,3 +45,11 @@ export default (props) => (
     }}
   </Query>
 );
+
+const styles = {
+  container: {
+    display: 'flex',
+    flexWrap: 'wrap',
+    justifyContent: 'center',
+  },
+};

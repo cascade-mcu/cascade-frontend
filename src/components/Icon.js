@@ -5,7 +5,8 @@ import Radium from 'radium';
 import step from '../theme/step';
 
 import { ReactComponent as humidity } from '../assets/humidity.svg';
-import { ReactComponent as pressure } from '../assets/pressure.svg';
+import { ReactComponent as pressure } from '../assets/humidity.svg';
+// import { ReactComponent as pressure } from '../assets/pressure.svg';
 import { ReactComponent as ambientLight } from '../assets/ambient-light.svg';
 import { ReactComponent as temperature } from '../assets/temperature.svg';
 
@@ -23,7 +24,7 @@ class Icon extends Component {
       type,
     } = this.props;
 
-    const TagName = Radium(TYPES[type]);
+    const TagName = Radium(TYPES[type] || TYPES.humidity);
 
     return (
       <TagName style={[styles.container, style]} />
