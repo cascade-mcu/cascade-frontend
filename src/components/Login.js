@@ -42,6 +42,20 @@ const validate = values => {
   return errors
 }
 
+const renderField = ({
+  input,
+  placeholder,
+  type,
+  meta: { touched, error, warning }
+}) => (
+  <div style={styles.form.field}>
+    <input {...input} placeholder={placeholder} style={styles.form.input} type={type} />
+    {touched && error && <div style={styles.form.error}>
+      {error}
+    </div>}
+  </div>
+)
+
 class Login extends Component {
   token(data) {
     return _.get(data, 'login.token');
@@ -78,8 +92,8 @@ class Login extends Component {
                   </div>
 
                   <form onSubmit={handleSubmit((variables) => login({ variables }))} style={styles.form.container}>
-                    <Field name='email' style={styles.field} component='input' type='text' placeholder='Email' />
-                    <Field name='password' style={styles.field} component='input' type='password' placeholder='Password' />
+                    <Field name='email' style={styles.field} component={renderField} type='text' placeholder='Email' />
+                    <Field name='password' style={styles.field} component={renderField} type='password' placeholder='Password' />
                     <div style={styles.form.button.container}>
                       <button type='submit' style={styles.button}>
                         Login
@@ -126,14 +140,6 @@ const styles = {
     padding: `${step(0.6)} ${step(2)}`,
     marginTop: step(0.5),
   },
-  field: {
-    width: `calc(100% - ${step()})`,
-    backgroundColor: '#3f4854',
-    padding: step(0.5),
-    marginBottom: step(),
-    outline: 0,
-    color: colors.white,
-  },
   form: {
     container: {
       padding: step(),
@@ -143,6 +149,20 @@ const styles = {
         width: '100%',
         textAlign: 'center',
       },
+    },
+    input: {
+      width: `calc(100% - ${step()})`,
+      backgroundColor: '#3f4854',
+      padding: step(0.5),
+      outline: 0,
+      color: colors.white,
+    },
+    field: {
+      marginBottom: step(),
+    },
+    error: {
+      marginTop: step(0.5),
+      color: colors.lightRed,
     },
   },
 };
