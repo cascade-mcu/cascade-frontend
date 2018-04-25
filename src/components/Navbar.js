@@ -45,23 +45,11 @@ class Navbar extends Component {
                 <NavbarLink to='/dashboard'>
                   <img style={{height: '50px'}} src={'/img/icon.png'} />
                 </NavbarLink>
-                {user && <NavbarLink to='/add-device'>
-                  + Add Device
-                </NavbarLink>}
-                {user && <NavbarLink to='/places'>
-                  Rooms
-                </NavbarLink>}
-                {user && <NavbarLink to='/locations'>
-                  Locations
-                </NavbarLink>}
                 {user && <NavbarLink to='/dashboard'>
                   Dashboard
                 </NavbarLink>}
               </div>
               <div style={styles.rightContainer}>
-                {user && <Link style= {styles.market} to='/'>
-                  Market
-                </Link>}
                 {user && <Button onClick={() => this.logout()}>
                   {user.firstName}
                   <FontAwesomeIcon style={styles.faBars} icon={faBars} />

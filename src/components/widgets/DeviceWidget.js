@@ -51,7 +51,8 @@ export default (props) => {
 
 const styles = {
   container: {
-    width: step(5 * 4 + 2 * 4),
+    width: '100%',
+    maxWidth: step(5 * 4 + 2 * 4),
     backgroundColor: '#292f36',
     margin: step(),
   },
