@@ -7,7 +7,8 @@ import { Link as RouterLink } from 'react-router-dom';
 
 import Expand from './Expand';
 import Toggle from './Toggle';
-import TinySensor from './TinySensor';
+import DeviceSensors from './DeviceSensors';
+import DeviceDebug from './DeviceDebug';
 
 import step from '../../theme/step';
 import colors from '../../theme/colors';
@@ -36,7 +37,9 @@ export default class DeviceWidget extends Component {
         name,
 
         sensors,
+        wifiLogs,
       },
+      device,
     } = this.props;
 
     const {
@@ -63,16 +66,8 @@ export default class DeviceWidget extends Component {
         </div>
 
         <div style={styles.content.container}>
-          {debug && <div style={styles.debug.container}>
-            <div>
-              Wifi: ...
-            </div>
-          </div>}
-          {!debug && <div style={styles.sensors.container}>
-            {_.map(sensors, (sensor) => (
-              <TinySensor key={sensor.id} sensor={sensor} />
-            ))}
-          </div>}
+          {debug && <DeviceDebug device={device} />}
+          {!debug && <DeviceSensors sensors={sensors} />}
         </div>
       </div>
     );
@@ -129,18 +124,6 @@ const styles = {
       justifyContent: 'space-between',
       alignItems: 'stretch',
       minHeight: '200px',
-    },
-  },
-  sensors: {
-    container: {
-      display: 'flex',
-      flexWrap: 'wrap',
-    },
-  },
-  debug: {
-    container: {
-      padding: step(),
-      color: colors.white,
     },
   },
 };

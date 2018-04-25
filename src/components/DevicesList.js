@@ -13,6 +13,17 @@ const GET_DEVICES = gql`
       name
       createdAt
 
+      wifiLogs(last: 1) {
+        ssid
+        address
+        createdAt
+        gateway
+        hostname
+        mac
+        netmask
+        rssi
+      }
+
       sensors {
         sensorType {
           name
