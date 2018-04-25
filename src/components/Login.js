@@ -16,7 +16,10 @@ import Container from './Container';
 import FontAwesomeIcon from '@fortawesome/react-fontawesome';
 import faPlus from '@fortawesome/fontawesome-free-solid/faPlus';
 
+// import TextField from './TextField';
+
 import step from '../theme/step';
+import colors from '../theme/colors';
 
 const LOGIN = gql`
   mutation login($email: String!, $password: String!) {
@@ -70,23 +73,18 @@ class Login extends Component {
 
               return (
                 <div style={styles.container}>
-                  <div style={styles.section}>
-                    <h2 style={styles.h2}>
-                      Login
-                    </h2>
+                  <div style={styles.header.container}>
+                    Login
                   </div>
+
                   <form onSubmit={handleSubmit((variables) => login({ variables }))} style={styles.form.container}>
-                    <label style={styles.label}>
-                      Email
-                    </label>
-                    <Field name='email' style={styles.field} component={TextField} />
-                    <label style={styles.label}>
-                      Password
-                    </label>
-                    <Field type='password' style={styles.field} component={TextField} />
-                    <Button type='submit' style={styles.button}>
-                      Login
-                    </Button>
+                    <Field name='email' style={styles.field} component='input' type='text' placeholder='Email' />
+                    <Field name='password' style={styles.field} component='input' type='password' placeholder='Password' />
+                    <div style={styles.form.button.container}>
+                      <button type='submit' style={styles.button}>
+                        Login
+                      </button>
+                    </div>
                     <div>
                       {error && _.get(error, 'graphQLErrors[0].message')}
                     </div>
@@ -104,109 +102,47 @@ class Login extends Component {
 const styles = {
   container: {
     width: '100%',
-    maxWidth: '400px',
-    height: '400px',
-    fontSize: '50px',
+    maxWidth: '350px',
     backgroundColor: '#292f36',
-    fontSize: '50px',
     margin: 'auto',
   },
-  section: {
-    // width: '500px',
-    height: '80px',
-    backgroundColor: '#1b1f24',
-  },
-  label: {
-    color: 'white',
-    fontSize: '20px',
-    fontWeight: '400',
-    lineHeight: '10px',
-    textTransform: 'uppercase',
-    letterSpacing: '0.25px',
-    marginTop: '35px',
+  header: {
+    container: {
+      backgroundColor: colors.darkGrey,
+      color: colors.white,
+      padding: step(),
+      textAlign: 'right',
+      textTransform: 'uppercase',
+      letterSpacing: '1px',
+      fontSize: '24px',
+      fontWeight: 600,
+    },
   },
   button: {
-    width: '150px',
-    height: '40px',
-    borderRadius: '5px',
-    marginLeft: '75px',
-    marginTop: '25px',
     backgroundColor: '#3a8564',
     color: 'white',
     cursor: 'pointer',
-  },
-  h2: {
-    color: '#ffffff',
-    fontSize: '30px',
-    fontWeight: '400',
-    marginTop: '22px',
-    marginRight: '20px',
-    textTransform: 'uppercase',
-    letterSpacing: '0.5px',
-    float: 'right',
-  },
-  h4: {
-    color: '#ffffff',
-    fontSize: '13px',
-    fontWeight: '400',
-    textTransform: 'uppercase',
-    letterSpacing: '0.13px',
-    marginLeft: '75px',
-    marginTop: '15px',
-  },
-  h5: {
-    color: '#ffffff',
-    fontSize: '13px',
-    fontWeight: '400',
-    textTransform: 'uppercase',
-    letterSpacing: '0.13px',
-    marginLeft: '75px',
-    marginTop: '15px',
+    border: 0,
+    padding: `${step(0.6)} ${step(2)}`,
+    marginTop: step(0.5),
   },
   field: {
-    width: '100%',
-    height: '30px',
+    width: `calc(100% - ${step()})`,
     backgroundColor: '#3f4854',
-  },
-  checkbox: {
-    borderRadius: '5px',
-    backgroundColor: '#3f4854',
-    cursor: 'pointer',
-  },
-  reminder: {
-    display: 'flex-wrap',
-    color: '#FFFFFF',
-    fontSize: '13px',
-    margin: '10px 0 0 75px',
-  },
-  footer: {
-    width: '500px',
-    height: '50px',
-    backgroundColor: '#fa8e03',
-  },
-  box: {
-    width: '75px',
-    height: '50px',
-    backgroundColor: '#e67500',
-    display: 'inline-block',
-  },
-  regLink: {
-    color: '#ffffff',
-    fontSize: '28px',
-    letterSpacing: '0.5px',
-    textDecoration: 'none',
-    textTransform: 'uppercase',
-    marginTop: '15px',
-  },
-  faPlus: {
-    fontSize: '50px',
-    color: '#fa8e03',
-    marginLeft: '15px',
-    marginBottom: '2px',
+    padding: step(0.5),
+    marginBottom: step(),
+    outline: 0,
+    color: colors.white,
   },
   form: {
     container: {
       padding: step(),
+    },
+    button: {
+      container: {
+        width: '100%',
+        textAlign: 'center',
+      },
     },
   },
 };
