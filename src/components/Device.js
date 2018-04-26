@@ -10,6 +10,9 @@ import Loader from './Loader';
 import SensorInfo from './SensorInfo';
 
 import step from '../theme/step';
+import 'react-dates/initialize';
+import DatePicker from './DatePicker';
+import 'react-dates/lib/css/_datepicker.css';
 
 const GET_DEVICE = gql`
   query device($deviceId: ID!) {
@@ -69,6 +72,9 @@ class Device extends Component {
                 <div>
                 <div>
                   <div style={styles.meta.container}>
+                  <div>
+                  <DatePicker />
+                  </div>
                     <div style={styles.meta.heading}>
                       {name}
                     </div>
@@ -117,6 +123,7 @@ const styles = {
     heading: {
       fontSize: '28px',
       fontWeight: 500,
+      marginTop: '20px',
     },
     id: {
       fontSize: '14px',

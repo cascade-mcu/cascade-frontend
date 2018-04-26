@@ -37,7 +37,6 @@ export default () => (
       <AuthedRoute path='/choose-device/:deviceModelId' exact component={ChooseDevice} />
       <AuthedRoute path='/setup-success/:deviceId' exact component={SetupSuccess} />
       <AuthedRoute path='/devices/:deviceId' exact component={Device} />
-      <AuthedRoute path='/devices' exact component={Devices} />
 
       <Redirect from='/' to='dashboard' />
     </Switch>
