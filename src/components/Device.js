@@ -57,7 +57,7 @@ class Device extends Component {
       <div>
         <Navbar {...this.props} />
         <Container style={styles.container}>
-          <Query query={GET_DEVICE} variables={{ deviceId, startDate: '2018-04-01', endDate: '2018-04-25' }}>
+          <Query query={GET_DEVICE} variables={{ deviceId, startDate: '2018-04-01', endDate: '2018-05-31' }}>
             {({ loading, error, data }) => {
               if (loading) return <Loader />;
               if (error) return `Error! ${error.message}`;
@@ -82,7 +82,7 @@ class Device extends Component {
                       ({id})
                     </div>
                     <div>
-                    <DatePicker handleChange={() => this.setStat } />
+                    <DatePicker handleChange={() => this.setState ({ startDate: '2018-04-01', endDate: '2018-04-25' })} />
                   </div>
                   </div>
                   </div>
