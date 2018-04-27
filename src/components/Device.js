@@ -82,7 +82,7 @@ class Device extends Component {
                       ({id})
                     </div>
                     <div>
-                    <DatePicker handleChange={() => this.setState ({ startDate: '2018-04-01', endDate: '2018-04-25' })} />
+                    <DatePicker handleChange={() => this.setState ({ startDate: '2018-04-01', endDate: '2018-05-31' })} />
                   </div>
                   </div>
                   </div>
