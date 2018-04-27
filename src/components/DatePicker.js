@@ -15,7 +15,8 @@ export default class DatePicker extends React.Component {
         onDateChange={date => this.setState({date})}
         onFocusChange={({ focused }) => this.setState({ focused })}
         focused={this.state.focused}
-        date={this.state.date}   
+        date={this.state.date}
+        isOutsideRange={() => false}  
       />
     )
   }
