@@ -15,7 +15,7 @@ import DatePicker from './DatePicker';
 import 'react-dates/lib/css/_datepicker.css';
 
 const GET_DEVICE = gql`
-  query device($deviceId: ID!) {
+  query device($deviceId: ID!, $startDate: DateTime, $endDate: DateTime) {
     device(where: {
       id: $deviceId
    }) {
@@ -30,7 +30,10 @@ const GET_DEVICE = gql`
           name
         }
 
-        logs(last: 50) {
+        logs(last: 50, where: {
+          readingTime_gte: $startDate,
+          readingTime_lte: $endDate,
+        }) {
           id
           value
           readingTime
@@ -54,7 +57,7 @@ class Device extends Component {
       <div>
         <Navbar {...this.props} />
         <Container style={styles.container}>
-          <Query query={GET_DEVICE} variables={{ deviceId }}>
+          <Query query={GET_DEVICE} variables={{ deviceId, startDate: '2018-04-01', endDate: '2018-04-25' }}>
             {({ loading, error, data }) => {
               if (loading) return <Loader />;
               if (error) return `Error! ${error.message}`;
@@ -72,15 +75,16 @@ class Device extends Component {
                 <div>
                 <div>
                   <div style={styles.meta.container}>
-                  <div>
-                  <DatePicker />
-                  </div>
                     <div style={styles.meta.heading}>
                       {name}
                     </div>
                     <div style={styles.meta.id}>
                       ({id})
                     </div>
+                    <div>
+                    <DatePicker handleChange={() => this.setStat } />
+                  </div>
+                  </div>
                   </div>
 
                   <div>
@@ -97,7 +101,6 @@ class Device extends Component {
                       );
                     })}
                   </div>
-                </div>
                 </div>
               );
             }}
@@ -123,10 +126,10 @@ const styles = {
     heading: {
       fontSize: '28px',
       fontWeight: 500,
-      marginTop: '20px',
     },
     id: {
       fontSize: '14px',
+      marginBottom: '20px',
     },
   },
 };

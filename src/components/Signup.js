@@ -16,6 +16,10 @@ import Container from './Container';
 import FontAwesomeIcon from '@fortawesome/react-fontawesome';
 import faPlus from '@fortawesome/fontawesome-free-solid/faPlus';
 
+// import TextField from './TextField';
+
+import step from '../theme/step';
+import colors from '../theme/colors';
 
 import { client } from '../index';
 
@@ -45,6 +49,20 @@ const validate = values => {
   }
   return errors
 }
+
+const renderField = ({
+  input,
+  placeholder,
+  type,
+  meta: { touched, error, warning }
+}) => (
+  <div style={styles.form.field}>
+    <input {...input} placeholder={placeholder} style={styles.form.input} type={type} />
+    {touched && error && <div style={styles.form.error}>
+      {error}
+    </div>}
+  </div>
+)
 
 class Signup extends Component {
   token(data) {
@@ -78,29 +96,23 @@ class Signup extends Component {
               return (
                 <div style={styles.main}>
                   <div style={styles.container}>
-                  <div style={styles.section}>
-                  <h2 style={styles.h2}>SIGN UP</h2>
+                  <div style={styles.header.container}>
+                  Sign up
                   </div>
+
                 <form onSubmit={handleSubmit((variables) => signup({ variables }))}>
-                <h3 style={styles.title}> First Name </h3>
-                  <Field name='firstName' style={styles.field} component={TextField} />
-                  <h3 style={styles.title}> Last Name </h3>
-                  <Field name='lastName' style={styles.field}  component={TextField} />
-                  <h3 style={styles.title}> Email </h3>
-                  <Field name='email' style={styles.field} component={TextField} />
-                  <h3 style={styles.title}> Password </h3>
-                  <Field name='password' style={styles.field} type='password' component={TextField} />
-                  <Button type='submit' style={styles.button}>
-                     Signup
-                   </Button>
-                   <h4 style={styles.h4}> PROUDLY CREATED BY “MIND IS” CORP.</h4>
-                   <div style={styles.footer}> 
-                   <div style={styles.box}> <FontAwesomeIcon style={styles.faPlus} icon={faPlus} /> </div> 
-                   <Link style={styles.logLink} to="/Login">Already have an account?</Link>       
-                   </div>
+                <Field name='firstName' style={styles.field} component={renderField} type='text' placeholder='First Name' />
+                  <Field name='lastName' style={styles.field} component={renderField} type='text' placeholder='Last Name' />
+                  <Field name='email' style={styles.field} component={renderField} type='text' placeholder='Email' />
+                  <Field name='password' style={styles.field} component={renderField} type='password' placeholder='Password' />
                   <div>
                     {error && _.get(error, 'graphQLErrors[0].message')}
                   </div>
+                  <div style={styles.form.button.container}>
+                      <button type='submit' style={styles.button}>
+                        Sign up
+                      </button>
+                      </div>
                 </form>
                 </div>
                 </div>
@@ -114,108 +126,62 @@ class Signup extends Component {
 }
 
 const styles = {
-  main: {
-    width: '50%',
-    margin: 'auto',
-    marginBottom: '50px',
-},
-container: {
-    width: '500px',
-    height: '700px',
-    fontSize: '50px',
+  container: {
+    width: '100%',
+    maxWidth: '350px',
     backgroundColor: '#292f36',
-    fontSize: '50px',
     margin: 'auto',
-    
-},
-section: {
-  width: '500px',
-  height: '80px',
-  backgroundColor: '#1b1f24',
-},
-title: {
-  color: 'white',
-  fontSize: '20px',
-  fontWeight: '400',
-  lineHeight: '10px',
-  textTransform: 'uppercase',
-  letterSpacing: '0.25px',
-  marginLeft: '75px',
-  marginTop: '35px',
   },
-icon: {
-  marginLeft: '114px',
-  marginTop: '42px',
-},
-button: {
-  width: '150px',
-  height: '40px',
-  borderRadius: '5px',
-  marginLeft: '75px',
-  marginTop: '25px',
-  backgroundColor: '#3a8564',
-  color: 'white',
-  cursor: 'pointer',
-},
-h2: {
-  color: '#ffffff',
-  fontSize: '30px',
-  fontWeight: '400',
-  marginTop: '22px',
-  marginRight: '20px',
-  textTransform: 'uppercase',
-  letterSpacing: '0.5px',
-  float: 'right',
-},
-h3: {
-  color: '#ffffff',
-  fontSize: '13px',
-  fontWeight: '400',
-  textTransform: 'uppercase',
-  letterSpacing: '0.13px',
-  marginLeft: '75px',
-  marginTop: '20px',
-},
-h4: {
-  color: '#ffffff',
-  fontSize: '13px',
-  fontWeight: '400',
-  textTransform: 'uppercase',
-  letterSpacing: '0.13px',
-  marginLeft: '75px',
-},
-field: {
-  width: '350px',
-  height: '30px',
-  backgroundColor: '#3f4854',
-  marginLeft: '75px',
-},
-footer: {
-  width: '500px',
-  height: '50px',
-  backgroundColor: '#fa8e03',
-},
-logLink: {
-color: '#ffffff',
-fontSize: '28px',
-letterSpacing: '0.5px',
-textDecoration: 'none',
-textTransform: 'uppercase',
-},
-box: {
-  width: '75px',
-  height: '50px',
-  backgroundColor: '#e67500',
-  display: 'inline-block',
-},
-faPlus: {
-  justifyContent: 'center',
-  fontSize: '50px',
-  color: '#fa8e03',
-  marginLeft: '15px',
-  marginBottom: '2px',
-},
-}
+  header: {
+    container: {
+      backgroundColor: colors.darkGrey,
+      color: colors.white,
+      padding: step(),
+      textAlign: 'right',
+      textTransform: 'uppercase',
+      letterSpacing: '1px',
+      fontSize: '24px',
+      fontWeight: 600,
+    },
+  },
+  button: {
+    backgroundColor: '#3a8564',
+    color: 'white',
+    cursor: 'pointer',
+    border: 0,
+    padding: `${step(0.6)} ${step(2)}`,
+    marginTop: step(0.5),
+    marginBottom: step(0.75),
+  },
+  form: {
+    container: {
+      padding: step(),
+    },
+    button: {
+      container: {
+        width: '100%',
+        textAlign: 'center',
+      },
+    },
+    input: {
+      width: `calc(100% - ${step(3)})`,
+      marginTop: step(1),
+      marginLeft: step(1),
+      backgroundColor: '#3f4854',
+      padding: step(0.5),
+      outline: 0,
+      color: colors.white,
+    },
+    field: {
+      marginBottom: step(),
+    },
+    error: {
+      marginTop: step(0.5),
+      marginLeft: step(1),
+      color: colors.lightRed,
+    },
+  },
+};
 
 export default compose(
   reduxForm({

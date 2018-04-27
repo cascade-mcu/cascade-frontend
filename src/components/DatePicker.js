@@ -13,9 +13,9 @@ export default class DatePicker extends React.Component {
       <SingleDatePicker
         numberOfMonths={1}
         onDateChange={date => this.setState({date})}
-        onFocusChange={({ focused }) => this.setState({ focused})}
+        onFocusChange={({ focused }) => this.setState({ focused })}
         focused={this.state.focused}
-        date={this.state.date}
+        date={this.state.date}   
       />
     )
   }
