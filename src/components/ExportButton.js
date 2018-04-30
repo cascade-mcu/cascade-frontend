@@ -10,11 +10,13 @@ import step from '../theme/step';
 import colors from '../theme/colors';
 
 const GET_LOGS = gql`
-  query getLogs($skip: Int!, $sensorId: ID!) {
+  query getLogs($skip: Int!, $sensorId: ID!, $startDate: DateTime!, $endDate: DateTime!) {
     logs(
       first: 500
       skip: $skip
       where: {
+        readingTime_gte: $startDate,
+        readingTime_lte: $endDate,
         sensor: {
           id: $sensorId
         }
@@ -69,6 +71,8 @@ export default class ExportButton extends Component {
       variables: {
         skip: this.state.logs.length,
         sensorId: this.props.sensor.id,
+        startDate: this.props.startDate,
+        endDate: this.props.endDate,
       },
     });
   }

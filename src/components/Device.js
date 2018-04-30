@@ -3,6 +3,7 @@ import { compose } from 'redux';
 import gql from 'graphql-tag';
 import _ from 'lodash';
 import { Query } from 'react-apollo';
+import moment from 'moment';
 
 import Navbar from './Navbar';
 import Container from './Container';
@@ -44,6 +45,14 @@ const GET_DEVICE = gql`
 `;
 
 class Device extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      startDate: moment().subtract(1, 'month'),
+      endDate: moment()
+    }
+  }
   render() {
     const {
       match: {
@@ -53,11 +62,16 @@ class Device extends Component {
       },
     } = this.props;
 
+    const {
+      startDate,
+      endDate,
+    } = this.state;
+
     return (
       <div>
         <Navbar {...this.props} />
         <Container style={styles.container}>
-          <Query query={GET_DEVICE} variables={{ deviceId, startDate: '2018-04-01', endDate: '2018-05-31' }}>
+          <Query query={GET_DEVICE} variables={{ deviceId, startDate, endDate }}>
             {({ loading, error, data }) => {
               if (loading) return <Loader />;
               if (error) return `Error! ${error.message}`;
@@ -82,7 +96,16 @@ class Device extends Component {
                       ({id})
                     </div>
                     <div>
-                    <DatePicker handleChange={() => this.setState ({ startDate: '2018-04-01', endDate: '2018-05-31' })} />
+                    <DatePicker 
+                      startDate={startDate}
+                      startDateId='startDateId'
+                      endDate={endDate}
+                      endDateId='endDateId  '
+                      onDatesChange={({ startDate, endDate }) => this.setState ({
+                       startDate, 
+                       endDate, 
+                      })}
+                    />
                   </div>
                   </div>
                   </div>
@@ -97,7 +120,7 @@ class Device extends Component {
                       } = sensor;
 
                       return (
-                        <SensorInfo key={sensor.id} sensor={sensor} />
+                        <SensorInfo key={sensor.id} sensor={sensor} startDate={startDate} endDate={endDate} />
                       );
                     })}
                   </div>

@@ -1,26 +1,24 @@
 import React from 'react';
 import moment from 'moment';
-import { SingleDatePicker } from 'react-dates';
+import { DateRangePicker } from 'react-dates';
 
 export default class DatePicker extends React.Component {
   state = {
-    focused: false,
-    date: moment(),
-    showDefaultInputIcon: true,
-    inputIconPosition: "after",
+    focusedInput: null,
   }
 
   render() {
     return (
-      <SingleDatePicker
+      <DateRangePicker
+        {...this.props}
         numberOfMonths={1}
-        onDateChange={date => this.setState({date})}
-        onFocusChange={({ focused }) => this.setState({ focused })}
-        focused={this.state.focused}
-        date={this.state.date}
+        onFocusChange={focusedInput => this.setState({ focusedInput })}
+        focusedInput={this.state.focusedInput}
         isOutsideRange={() => false}  
-        showDefaultInputIcon inputIconPosition="after"
-        firstDayOfWeek={1} autoFocus     
+        showDefaultInputIcon 
+        inputIconPosition="after"
+        firstDayOfWeek={1} 
+        autoFocus     
          />
     )
   }

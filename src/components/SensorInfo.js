@@ -5,25 +5,29 @@ import ExportButton from './ExportButton';
 import step from '../theme/step';
 import colors from '../theme/colors';
 
-export default ({
-  sensor,
-  sensor: {
-    sensorType: {
-      name,
+export default (props) => {
+  const {
+    sensor,
+    sensor: {
+      sensorType: {
+        name,
+      },
     },
-  },
-}) => (
-  <div style={styles.container}>
-    <div style={styles.header.container}>
-      <div style={styles.header.heading}>
-        {name}
-      </div>
-      <ExportButton sensor={sensor} />
-    </div>
+  } = props;
 
-    <SensorChart sensor={sensor} />
-  </div>
-);
+  return (
+    <div style={styles.container}>
+      <div style={styles.header.container}>
+        <div style={styles.header.heading}>
+          {name}
+        </div>
+        <ExportButton {...props} />
+      </div>
+
+      <SensorChart sensor={sensor} />
+    </div>
+  );
+};
 
 const styles = {
   container: {
