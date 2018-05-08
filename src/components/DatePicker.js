@@ -1,5 +1,4 @@
 import React from 'react';
-import moment from 'moment';
 import { DateRangePicker } from 'react-dates';
 
 export default class DatePicker extends React.Component {
@@ -14,11 +13,11 @@ export default class DatePicker extends React.Component {
         numberOfMonths={1}
         onFocusChange={focusedInput => this.setState({ focusedInput })}
         focusedInput={this.state.focusedInput}
-        isOutsideRange={() => false}  
-        showDefaultInputIcon 
+        isOutsideRange={() => false}
+        showDefaultInputIcon
         inputIconPosition="after"
-        firstDayOfWeek={1} 
-        autoFocus     
+        firstDayOfWeek={1}
+        autoFocus
          />
     )
   }

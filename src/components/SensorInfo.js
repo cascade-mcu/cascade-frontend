@@ -3,7 +3,6 @@ import React from 'react';
 import SensorChart from './SensorChart';
 import ExportButton from './ExportButton';
 import step from '../theme/step';
-import colors from '../theme/colors';
 
 export default (props) => {
   const {

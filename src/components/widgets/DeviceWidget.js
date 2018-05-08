@@ -1,12 +1,9 @@
 import React, { Component } from 'react';
 import FontAwesomeIcon from '@fortawesome/react-fontawesome';
 import faLeaf from '@fortawesome/fontawesome-free-solid/faLeaf';
-import _ from 'lodash';
 import Radium from 'radium';
 import { Link as RouterLink } from 'react-router-dom';
 
-import Expand from './Expand';
-import Toggle from './Toggle';
 import DeviceSensors from './DeviceSensors';
 import DeviceDebug from './DeviceDebug';
 
@@ -37,7 +34,6 @@ export default class DeviceWidget extends Component {
         name,
 
         sensors,
-        wifiLogs,
       },
       device,
     } = this.props;

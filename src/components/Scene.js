@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
-import { compose } from 'redux';
 import gql from 'graphql-tag';
-import _ from 'lodash';
 import { Query } from 'react-apollo';
 
 import Navbar from './Navbar';

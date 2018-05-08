@@ -8,9 +8,7 @@ import { Query } from 'react-apollo';
 import Navbar from './Navbar';
 import Container from './Container';
 import Loader from './Loader';
-import EmptyDashboard from './EmptyDashboard';
 
-import colors from '../theme/colors';
 import step from '../theme/step';
 
 const GET_LOCATIONS = gql`
@@ -75,10 +73,10 @@ const styles = {
     textAlign: 'center',
   },
   text: {
-    textAlign: 'center', 
-    color: '#FFFFFF', 
-    fontSize: '16px', 
-    letterSpacing: '1px', 
+    textAlign: 'center',
+    color: '#FFFFFF',
+    fontSize: '16px',
+    letterSpacing: '1px',
     marginBottom: '20px'
   },
   button: {

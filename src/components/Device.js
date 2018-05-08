@@ -96,14 +96,14 @@ class Device extends Component {
                       ({id})
                     </div>
                     <div>
-                    <DatePicker 
+                    <DatePicker
                       startDate={startDate}
                       startDateId='startDateId'
                       endDate={endDate}
-                      endDateId='endDateId  '
-                      onDatesChange={({ startDate, endDate }) => this.setState ({
-                       startDate, 
-                       endDate, 
+                      endDateId='endDateId'
+                      onDatesChange={({ startDate, endDate }) => this.setState({
+                       startDate,
+                       endDate,
                       })}
                     />
                   </div>
@@ -111,18 +111,9 @@ class Device extends Component {
                   </div>
 
                   <div>
-                    {_.map(sensors, (sensor) => {
-                      const {
-                        sensorType: {
-                          name,
-                        },
-                        logs,
-                      } = sensor;
-
-                      return (
-                        <SensorInfo key={sensor.id} sensor={sensor} startDate={startDate} endDate={endDate} />
-                      );
-                    })}
+                    {_.map(sensors, (sensor) => (
+                      <SensorInfo key={sensor.id} sensor={sensor} startDate={startDate} endDate={endDate} />
+                    ))}
                   </div>
                 </div>
               );

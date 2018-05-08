@@ -2,19 +2,12 @@ import React, { Component } from 'react';
 import { compose } from 'redux';
 import gql from 'graphql-tag';
 import { Mutation } from "react-apollo";
-import { Link } from 'react-router-dom';
 
 import _ from 'lodash';
 import { reduxForm, Field } from 'redux-form'
-import {
-  TextField,
-} from 'redux-form-material-ui'
-import Button from 'material-ui/Button';
 
 import Navbar from './Navbar';
 import Container from './Container';
-import FontAwesomeIcon from '@fortawesome/react-fontawesome';
-import faPlus from '@fortawesome/fontawesome-free-solid/faPlus';
 
 // import TextField from './TextField';
 

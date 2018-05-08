@@ -10,7 +10,6 @@ import { Redirect } from 'react-router-dom';
 import Navbar from './Navbar';
 import Container from './Container';
 import Loader from './Loader';
-import EmptyDashboard from './EmptyDashboard';
 
 import colors from '../theme/colors';
 import step from '../theme/step';

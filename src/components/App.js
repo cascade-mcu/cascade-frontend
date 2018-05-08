@@ -1,5 +1,4 @@
 import React from 'react';
-import Button from 'material-ui/Button';
 
 import {
   Redirect,
@@ -20,7 +19,6 @@ import Login from './Login';
 import Signup from './Signup';
 import AuthedRoute from './AuthedRoute';
 import UnauthedRoute from './UnauthedRoute';
-import Devices from './Devices';
 
 export default () => (
   <div>

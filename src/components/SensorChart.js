@@ -1,10 +1,7 @@
 import React from 'react';
 import {
   AreaChart,
-  CartesianGrid,
   Area,
-  LineChart,
-  Line,
   XAxis,
   YAxis,
   Tooltip,
@@ -16,7 +13,7 @@ import _ from 'lodash';
 import colors from '../theme/colors';
 
 const tooltipFormatter = (value, name, props) => {
-  if (name != 'readingTime') return value;
+  if (name !== 'readingTime') return value;
 
   return moment(value).format('YYYY-MM-DD HH:mm:ss');
 };
@@ -74,9 +71,3 @@ export default ({
     </AreaChart>
   </ResponsiveContainer>
 );
-
-const styles = {
-  tick: {
-    color: colors.white,
-  },
-};

@@ -1,12 +1,9 @@
 import React from 'react';
 import gql from 'graphql-tag';
 import _ from 'lodash';
-import Button from 'material-ui/Button';
-import { Link } from 'react-router-dom';
 import { Query } from 'react-apollo';
 import {
   AreaChart,
-  CartesianGrid,
   Area,
   XAxis,
   YAxis,
@@ -18,9 +15,7 @@ import moment from 'moment';
 import Navbar from './Navbar';
 import Container from './Container';
 import Loader from './Loader';
-import EmptyDashboard from './EmptyDashboard';
 
-import colors from '../theme/colors';
 import step from '../theme/step';
 
 const GET_DEVICES = gql`

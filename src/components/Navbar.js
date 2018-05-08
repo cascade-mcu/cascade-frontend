@@ -1,19 +1,11 @@
 import React, { Component } from 'react';
 import _ from 'lodash';
-import Button from 'material-ui/Button';
-import { Link as RouterLink } from 'react-router-dom';
 import gql from 'graphql-tag';
 import { Query } from 'react-apollo';
 import { client } from '../index';
 import Radium from 'radium';
-import color from 'color';
-import PropTypes from 'prop-types';
-import FontAwesomeIcon from '@fortawesome/react-fontawesome';
-import faBars from '@fortawesome/fontawesome-free-solid/faBars';
 
 import NavbarLink from './NavbarLink';
-
-const Link = Radium(RouterLink)
 
 const ME = gql`
   query me {
@@ -43,7 +35,7 @@ class Navbar extends Component {
             <div style={styles.container}>
               <div style={styles.leftContainer}>
                 <NavbarLink to='/dashboard'>
-                  <img style={{height: '50px'}} src={'/img/icon.png'} />
+                  <img alt='To Dashboard' style={{height: '50px'}} src={'/img/icon.png'} />
                 </NavbarLink>
                 {user && <NavbarLink to='/dashboard'>
                   Dashboard
